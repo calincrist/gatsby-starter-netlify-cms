@@ -2,7 +2,30 @@
 templateKey: about-page
 title: About me
 ---
-![Calin-Cristian Ciubotariu](/img/fotoram.io.png "This is me.")
+
+<br />
+<br />
+
+<img align="left" src="/img/fotoram.io.png"/>
+
+
+<br />
+<br />
+
+<br />
+<br />
+
+<br />
+<br />
+
+<br />
+<br />
+
+<br />
+<br />
+
+<br />
+<br />
 
 ### Hi and welcome to my personal space on the internet.
 
