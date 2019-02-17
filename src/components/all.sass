@@ -1,5 +1,14 @@
 @import "~bulma/sass/utilities/initial-variables"
 
+@font-face
+  font-family: "Helmet-Regular"
+  src: url('../fonts/Helmet-Regular.ttf')
+
+.text-logo
+  font-size: 34px
+  letter-spacing: 0.08em
+  font-weight: bold
+
 // Config vars
 // Kalidi logo brand color: #FD461E
 $kaldi-red: #D64000
@@ -11,6 +20,12 @@ $body-color: #333
 
 .navbar .navbar-menu
   box-shadow:none !important
+
+.section
+  background-color: white
+
+.page-title
+  padding-left: 1.58em
 
 .content .taglist
   list-style: none
@@ -43,5 +58,52 @@ $body-color: #333
 
 .margin-top-0
   margin-top: 0 !important
+
+.title
+  font-family: Roboto !important
+  font-style: normal !important
+  font-weight: bold !important
+  line-height: normal !important
+  font-size: 40px !important
+  letter-spacing: 0.05em !important
+  color: #000000 !important
+
+
+.blog-post-title
+  left: 0%
+  right: 6.69%
+  top: 0%
+  bottom: 83.75%
+  font-family: Roboto
+  font-style: normal
+  font-weight: bold
+  line-height: normal
+  font-size: 48px
+  letter-spacing: 0.02em
+  color: #585858
+
+.blog-post-excerpt
+  font-family: Roboto
+  font-style: normal
+  font-weight: normal
+  line-height: 32px
+  font-size: 18px
+  text-align: justify
+  letter-spacing: 0.02em
+  color: #8F9395
+  a
+    text-decoration: none
+
+.blog-post-content
+  // font-family: Roboto
+  font-style: normal
+  font-weight: normal
+  line-height: 35px
+  font-size: 17px
+  // color: #757575
+
+.divider
+  border: 1px solid #E7F2F9
+  height: 1px
 
 @import "~bulma"
