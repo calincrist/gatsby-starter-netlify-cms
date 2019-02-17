@@ -23,7 +23,7 @@ const TemplateWrapper = ({ children }) => (
           <html lang="en" />
           <title>{data.site.siteMetadata.title}</title>
           <meta name="description" content={data.site.siteMetadata.description} />
-          
+          <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet"></link>
           <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
 	        <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
 	        <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
