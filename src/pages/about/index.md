@@ -5,8 +5,6 @@ title: About me
 <br />
 <br />
 
-![Calin-Cristian Ciubotariu](/img/fotoram.io.png "This is me.")
-
 <br />
 <br />
 
