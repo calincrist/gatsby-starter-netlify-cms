@@ -21,10 +21,10 @@ export const AboutPageTemplate = ({ title, content, contentComponent }) => {
               <div class="columns">
                 <div class="column is-one-quarter">
                   <img src={profileImage} alt="Logo" />
-                  <SocialIcon class="social-icon" url="https://www.upwork.com/o/profiles/users/_~0166257bb58306374f/" />
-                  <SocialIcon class="social-icon"  url="https://www.linkedin.com/in/calin-cristian-ciubotariu-9a653699" />
-                  <SocialIcon class="social-icon"  url="https://twitter.com/calin_crist" />
-                  <SocialIcon class="social-icon"  url="https://www.facebook.com/calin.crist" /> 
+                  <SocialIcon target="_blank" class="social-icon" url="https://www.upwork.com/o/profiles/users/_~0166257bb58306374f/" />
+                  <SocialIcon target="_blank"  class="social-icon"  url="https://www.linkedin.com/in/calin-cristian-ciubotariu-9a653699" />
+                  <SocialIcon target="_blank"  class="social-icon"  url="https://twitter.com/calin_crist" />
+                  <SocialIcon target="_blank"  class="social-icon"  url="https://www.facebook.com/calin.crist" /> 
                 </div>
                 <div class="column">
                   <PageContent className="content" content={content} />
