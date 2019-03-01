@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
-
+import { SocialIcon } from "react-social-icons";
 import profileImage from "../img/fotoram.io.png"
 
 export const AboutPageTemplate = ({ title, content, contentComponent }) => {
@@ -18,7 +18,15 @@ export const AboutPageTemplate = ({ title, content, contentComponent }) => {
               <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
                 {title}
               </h2>
+              <br/>
+              <br/>
+              <br/>
               <img src={profileImage} alt="Logo" />
+              <br/>
+              <SocialIcon style={{paddingRight: 20}} url="https://www.upwork.com/o/profiles/users/_~0166257bb58306374f/" />
+              <SocialIcon url="https://www.linkedin.com/in/calin-cristian-ciubotariu-9a653699" />
+              <SocialIcon url="https://twitter.com/calin_crist" />
+              <SocialIcon url="https://www.facebook.com/calin.crist" />
               <PageContent className="content" content={content} />
             </div>
           </div>

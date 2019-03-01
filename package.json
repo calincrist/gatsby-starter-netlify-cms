@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "prettier": "^1.15.3",
+    "react-social-icons": "^4.1.0",
     "rimraf": "^2.6.2"
   }
 }
