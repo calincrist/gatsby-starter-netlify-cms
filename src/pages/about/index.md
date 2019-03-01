@@ -2,12 +2,6 @@
 templateKey: about-page
 title: About me
 ---
-<br />
-<br />
-
-<br />
-<br />
-
 ### Hi and welcome to my personal space on the internet.
 
 My name is Calin-Cristian Ciubotariu and I am a software developer specialised in mobile technologies. 
