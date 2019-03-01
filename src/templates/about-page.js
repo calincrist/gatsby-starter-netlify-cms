@@ -18,16 +18,22 @@ export const AboutPageTemplate = ({ title, content, contentComponent }) => {
               <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
                 {title}
               </h2>
+              <div class="columns">
+                <div class="column is-one-quarter">
+                  <img src={profileImage} alt="Logo" />
+                  <SocialIcon class="social-icon" url="https://www.upwork.com/o/profiles/users/_~0166257bb58306374f/" />
+                  <SocialIcon class="social-icon"  url="https://www.linkedin.com/in/calin-cristian-ciubotariu-9a653699" />
+                  <SocialIcon class="social-icon"  url="https://twitter.com/calin_crist" />
+                  <SocialIcon class="social-icon"  url="https://www.facebook.com/calin.crist" /> 
+                </div>
+                <div class="column">
+                  <PageContent className="content" content={content} />
+                </div>
+              </div>
               <br/>
+              
               <br/>
-              <br/>
-              <img src={profileImage} alt="Logo" />
-              <br/>
-              <SocialIcon style={{paddingRight: 20}} url="https://www.upwork.com/o/profiles/users/_~0166257bb58306374f/" />
-              <SocialIcon url="https://www.linkedin.com/in/calin-cristian-ciubotariu-9a653699" />
-              <SocialIcon url="https://twitter.com/calin_crist" />
-              <SocialIcon url="https://www.facebook.com/calin.crist" />
-              <PageContent className="content" content={content} />
+              
             </div>
           </div>
         </div>
