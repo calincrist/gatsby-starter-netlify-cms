@@ -2,10 +2,7 @@
 templateKey: about-page
 title: About me
 ---
-<br />
-<br />
 
-<br />
 <br />
 
 ### Hi and welcome to my personal space on the internet.
