@@ -12,7 +12,7 @@ title: About me
 
 ### Hi and welcome to my personal space on the internet.
 
-My name is Calin and I am a software developer specialised in mobile technologies. 
+My name is Calin-Cristian Ciubotariu and I am a software developer specialised in mobile technologies. 
 
 I developed a wide variety of mobile apps and took part in projects ranging from advertising and social to event planning and mobile payments. 
 
