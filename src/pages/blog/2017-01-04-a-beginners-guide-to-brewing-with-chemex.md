@@ -443,6 +443,7 @@ Then, the app proceeds to the confirmation screen.
     }
 
 
+
 *ConfirmSignUpViewController.swift*:
 
 
@@ -539,11 +540,13 @@ Then, the app proceeds to the confirmation screen.
         }
     }
 
+
 ### Reset password flow
 
 This flow is a 2 step process. 
 
-First, the user has to receive a confirmation code through email or SMS. It is done by calling forgotPassword(username: username). The details about how the code was sent can be retrieved from the UserCodeDeliveryDetails included in the response.
+First, the user has to receive a confirmation code through email or SMS. 
+It is done by calling `forgotPassword(username: username)`. The details about how the code was sent can be retrieved from the `UserCodeDeliveryDetails` included in the response.
 
     /// Indicates the state of forgot password operation.
     public enum ForgotPasswordState {
@@ -565,16 +568,16 @@ Then this code is used to confirm the new password.
 
     confirmForgotPassword(username: username, newPassword: newPassword, confirmationCode: confirmationCode)
 
-Here we have 2 screens:
 
-1. Enter username
+Here we have 2 screens:
+1. To enter the username
     - ResetPasswordViewController
 2. Confirm the verification code and enter a new password
     - NewPasswordViewController
 
+
     import UIKit
-    import AWSMobileClient
-    
+    import AWSMobileClient    
     class ResetPasswordViewController: UIViewController {
     
         @IBOutlet weak var usernameTextField: UITextField!
@@ -617,6 +620,8 @@ Here we have 2 screens:
             self.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
+
+*NewPasswordViewController*:
 
     import UIKit
     import AWSMobileClient
@@ -665,6 +670,8 @@ Here we have 2 screens:
             self.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
+
+
 
 ### Sign Out action
 
