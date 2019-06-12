@@ -10,8 +10,11 @@ description: >-
   Amplify comes into play. It makes this experience workable for developers and
   risk-less for users.
 tags:
-  - brewing
-  - chemex
+  - aws
+  - amplify
+  - ios
+  - swift
+  - auth
 ---
 
 In this blog post I would like to prove this by showing how I integrated AWS Amplify Auth component into my iOS app.
