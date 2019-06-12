@@ -38,8 +38,6 @@ What I have planned is to create a basic iOS app and to add authentication flows
 * sign up
 * reset password
 
-
-
 To be easier to understand, here's a diagram:
 
 ![sketch](/img/b6feabe3d8a04618ae9301b767233aa5.png "App sketch")
@@ -50,7 +48,7 @@ I created a SingleView Swift project and called it _aws_amplify_integration_.
 
 ![app template](/img/screenshot_2019-05-18_at_16.51.21.png "SingleView app template")
 
-Folder structure
+![project name](/img/screenshot_2019-05-18_at_16.52.03.png "Project name")
 
 Here's a screenshot with what I propose to be the folder structure:
 
