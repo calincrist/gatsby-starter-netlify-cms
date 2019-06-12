@@ -16,7 +16,9 @@ export const BlogPostTemplate = ({
   title,
   helmet,
 }) => {
-  const PostContent = contentComponent || Content
+  const PostContent = /*contentComponent || */ Content
+
+  console.log({publishDate});
 
   return (
     <section className="section">
@@ -27,7 +29,7 @@ export const BlogPostTemplate = ({
             <h1 className="title is-size-2">
               {title}
             </h1>
-            <small className="publish-date" style={{color: '#A5B1B8'}}>{publishDate.toUpperCase()}</small>
+            <small className="publish-date" style={{color: '#A5B1B8'}}>{publishDate ? publishDate.toUpperCase() : "-"}</small>
         
             <br />
             <br />
