@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: How To Do Authentication using AWS Amplify in iOS
-date: 2017-01-04T15:04:10.000Z
+date: 2019-06-12T15:04:10.000Z
 description: >-
   If you are a developer, there's a 99% chance that you'll be dealing with
   authenticating your apps users.​ The authentication flows need to be secure,
