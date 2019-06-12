@@ -134,9 +134,9 @@ If it's not, make sure that you added this file to your project.
 
 ### Check for auth state
 
-First, AWSMobileClient needs to be imported to use the client to check for the authentication state.
+First, `AWSMobileClient` needs to be imported to use the client to check for the authentication state.
 
-By calling *sharedInstance()* the configurations are being pulled from *awsconfiguration.json.* This manages the users' session for auth tasks like automatic credentials management and refresh routines.
+By calling *sharedInstance()* the configurations are being pulled from `awsconfiguration.json`. This manages the users' session for auth tasks like automatic credentials management and refresh routines.
 
 The *initialize()* method will start a new session. The result contains an ENUM value that exposes the current user state:
 
@@ -144,7 +144,7 @@ The *initialize()* method will start a new session. The result contains an ENUM 
         case signedIn, signedOut, signedOutFederatedTokensInvalid, signedOutUserPoolsTokenInvalid, guest, unknown
     }
 
-We can take advantage of this workflow to determine what to present to the user. For this example we use *signedIn.*
+We can take advantage of this workflow to determine what to present to the user. For this example we use *signedIn*.
 
 If the user is logged in we can redirect to *MainViewController,* otherwise to *LoginViewController.*
 
@@ -186,12 +186,11 @@ If the user is logged in we can redirect to *MainViewController,* otherwise to *
         }
     }
 
-In AppDelegate.swift's method didFinishLaunchingWithOptions we present the SplashScreenViewController.
+In AppDelegate.swift's method *didFinishLaunchingWithOptions* we present the *SplashScreenViewController*.
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
             
         IQKeyboardManager.shared.enable = true
-        
         window = UIWindow(frame: UIScreen.main.bounds)
         
         if let window = window {
@@ -208,10 +207,8 @@ In AppDelegate.swift's method didFinishLaunchingWithOptions we present the Splas
 
 ### Login flow
 
-When the user is not signed in the login screen in presented. 
-
-From here we can:
-
+When the user is not signed in the login screen in presented.
+From here the user can:
 - enter a username and a password to login
 - go to sign up flow
 - go to reset password flow
@@ -276,7 +273,8 @@ Usually, your needs won't reach all the client errors. But it's a good practice 
         case deviceNotRemembered(message: String)
     }
 
-When there is no error, the *SignInResult* contains the state of the user.
+
+When there is no error, the `SignInResult` contains the state of the user.
 
     public enum SignInState: String {
         case unknown = "UNKNOWN"
@@ -289,6 +287,7 @@ When there is no error, the *SignInResult* contains the state of the user.
         case newPasswordRequired = "NEW_PASSWORD_REQUIRED"
         case signedIn = "SIGN_IN_COMPLETE"
     }
+
 
 Here is the entire implementation and handling.
 
@@ -347,14 +346,14 @@ When the sign in in complete, redirect to *MainViewController.*
 
 Here we have 2 screens to complete this flow:
 
-1. Enter your account details (full name, email, username, password) 
+1. Enter account details (full name, email, username, password) 
     - *SignUpViewController*
-2. Confirm the verification code 
+2. Confirm the verification code
     - *ConfirmSignUpViewController*
 
 In AWS Amplify, signing up and confirming look very similar to the sign in process. 
 
-The only thing that is different is the result. It's using *SignUpResult* that contains the signUp confirmation state.
+The only thing that is different is the result. It's using `SignUpResult` that contains the signUp confirmation state.
 
     /// Indicates the state of user during the sign up operation.
     public enum SignUpConfirmationState {
