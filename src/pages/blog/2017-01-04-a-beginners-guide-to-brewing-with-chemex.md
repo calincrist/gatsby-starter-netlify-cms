@@ -38,7 +38,7 @@ What I have planned is to create a basic iOS app and to add authentication flows
 * sign up
 * reset password
 
-### Diagram
+
 
 To be easier to understand, here's a diagram:
 
@@ -50,10 +50,9 @@ I created a SingleView Swift project and called it _aws_amplify_integration_.
 
 ![app template](/img/screenshot_2019-05-18_at_16.51.21.png "SingleView app template")
 
-![](/img/screenshot_2019-05-18_at_16.52.03.png "Project name")
+Folder structure
 
-1. Folder structure
-   Here's a screenshot with what I propose to be the folder structure:
+Here's a screenshot with what I propose to be the folder structure:
 
 ![folder structure](/img/screenshot_2019-05-18_at_16.49.21.png "Folder structure")
 
@@ -62,6 +61,8 @@ I created a SingleView Swift project and called it _aws_amplify_integration_.
 The UI is pretty basic for the sake of the tutorial. 
 
 The Github link to the project can please your curiosity if you want to take a look over the xib files.
+
+[calincrist/aws_amplify_integration | GitHub](https://github.com/calincrist/aws_amplify_integration.git)
 
 ## Add AWS Amplify libs
 
@@ -786,9 +787,6 @@ It's really nice to focus on implementing features and not libraries.
 
 ## Links
 
-* Repository:
-    [calincrist/aws_amplify_integration | GitHub](https://github.com/calincrist/aws_amplify_integration.git)
-* Twitter:
-    [Calin Cristian (@calin_crist) | Twitter](https://twitter.com/calin_crist)
-* Linkedin:
-    [Calin - Cristian Ciubotariu - Freelance Software Developer | LinkedIn](http://www.linkedin.com/in/calincrist)
+* [calincrist/aws_amplify_integration | GitHub](https://github.com/calincrist/aws_amplify_integration.git)
+* [Calin Cristian (@calin_crist) | Twitter](https://twitter.com/calin_crist)
+* [Calin - Cristian Ciubotariu - Freelance Software Developer | LinkedIn](http://www.linkedin.com/in/calincrist)
