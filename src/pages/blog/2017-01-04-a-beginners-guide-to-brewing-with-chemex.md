@@ -743,16 +743,11 @@ It's really nice to focus on implementing features and not libraries.
 
 ## Links
 
-- Github link
-
+- Repository:
     [calincrist/aws_amplify_integration | GitHub](https://github.com/calincrist/aws_amplify_integration.git)
 
-- Twitter link
-
+- Twitter:
     [Calin Cristian (@calin_crist) | Twitter](https://twitter.com/calin_crist)
 
-- Linkedin link
-
+- Linkedin:
     [Calin - Cristian Ciubotariu - Freelance Software Developer | LinkedIn](http://www.linkedin.com/in/calincrist)
-
-- Upwork link
