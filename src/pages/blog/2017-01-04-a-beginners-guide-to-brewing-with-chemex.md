@@ -675,7 +675,8 @@ Here we have 2 screens:
 
 ### Sign Out action
 
-There is not much to say about it :) Call the following and the user will be logged out from the current device by clearing the local keychain store.
+There is not much to say about it :) 
+Call the following and the user will be logged out from the current device by clearing the local keychain store.
 
     AWSMobileClient.sharedInstance().signOut()
 
@@ -683,7 +684,7 @@ Also, this can be a global action that logs out the user from all active session
 
 Although the tokens are revoked, the AWS credentials will remain valid until they expire (which by default is 1 hour).
 
-This is not a default behaviour, so we need to specify the signOut options using a SignOutOptions object:
+This is not a default behaviour, so we need to specify the signOut options using a `SignOutOptions` object:
 
     /// Signout options to change the default behavior.
     public struct SignOutOptions {
@@ -701,9 +702,13 @@ This is not a default behaviour, so we need to specify the signOut options using
         }
     }
 
+Applying options would look like this:
+
     AWSMobileClient.sharedInstance().signOut(options: SignOutOptions(signOutGlobally: true)) { (error) in
         print("Error: \(error.debugDescription)")
     }
+
+*MainViewController.swift*:
 
     import UIKit
     import AWSMobileClient
@@ -727,6 +732,7 @@ This is not a default behaviour, so we need to specify the signOut options using
         
     }
 
+
 ## Conclusion
 
 That's it! And it's just one component from many others.
@@ -739,7 +745,7 @@ It's really nice to focus on implementing features and not libraries.
 
 - Github link
 
-    [calincrist/aws_amplify_integration](https://github.com/calincrist/aws_amplify_integration.git)
+    [calincrist/aws_amplify_integration | GitHub](https://github.com/calincrist/aws_amplify_integration.git)
 
 - Twitter link
 
@@ -747,6 +753,6 @@ It's really nice to focus on implementing features and not libraries.
 
 - Linkedin link
 
-    [Calin - Cristian Ciubotariu - Freelance Software Developer - Self-employed Contractor | LinkedIn](http://www.linkedin.com/in/calincrist)
+    [Calin - Cristian Ciubotariu - Freelance Software Developer | LinkedIn](http://www.linkedin.com/in/calincrist)
 
 - Upwork link
