@@ -41,10 +41,16 @@ To be easier to understand, here's a diagram:
 
 ![flow](/img/b6feabe3d8a04618ae9301b767233aa5.png "App flow sketch")
 
-
-
 ## Create basic iOS app project
 
 I created a SingleView Swift project and called it _aws_amplify_integration_.
 
 ![project template](/img/screenshot_2019-05-18_at_16.51.21.png "SingleView Project template")
+
+![project options](/img/screenshot_2019-05-18_at_16.52.03.png "Project options")
+
+
+
+Here's a screenshot with what I propose to be the folder structure:
+
+![folder structure](/img/screenshot_2019-05-18_at_16.49.21.png "Folder structure")
