@@ -442,6 +442,10 @@ Then, the app proceeds to the confirmation screen.
         }
     }
 
+
+*ConfirmSignUpViewController.swift*:
+
+
     import AWSMobileClient
     
     class ConfirmSignUpViewController: UIViewController {
