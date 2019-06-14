@@ -767,6 +767,5 @@ The Amplify library is a real game changer when it comes to development speed an
 
 It's really nice to focus on implementing features and not libraries.
 
-
 - Github link
     [calincrist/aws_amplify_integration](https://github.com/calincrist/aws_amplify_integration.git)
