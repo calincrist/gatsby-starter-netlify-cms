@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: How To Do Authentication using AWS Amplify in iOS
-date: 2017-01-04T15:04:10.000Z
+date: 2019-06-12T15:04:10.000Z
 description: >-
   If you are a developer, there's a 99% chance that you'll be dealing with
   authenticating your apps users.​ The authentication flows need to be secure,
@@ -16,7 +16,9 @@ tags:
   - swift
   - auth
 ---
+
 In this blog post I would like to prove this by showing how I integrated AWS Amplify Auth component into my iOS app.
+
 
 ### **AWS Amplify**
 
@@ -26,87 +28,83 @@ It has a great strength: you need no über-strong backend knowledge to deploy an
 
 ### **Auth**
 
-> "AWS Amplify Authentication module provides Authentication APIs and building blocks for developers who want to create user authentication experiences." (<https://aws-amplify.github.io/docs/js/authentication>)
+> "AWS Amplify Authentication module provides Authentication APIs and building blocks for developers who want to create user authentication experiences." ([https://aws-amplify.github.io/docs/js/authentication](https://aws-amplify.github.io/docs/js/authentication))
 
 It has a great strength: you need no über-strong backend knowledge to deploy and integrate. By using this, you can focus more on building your app than configuring.
 
-## What/How is implemented
+### **What/How will I implement**
 
 What I have planned is to create a basic iOS app and to add authentication flows to it:
 
-* login
-* sign up
-* reset password
-
+- login
+- sign up
+- reset password
 
 
 To be easier to understand, here's a diagram:
 
-![sketch](/img/b6feabe3d8a04618ae9301b767233aa5.png "App sketch")
+![](https://thepracticaldev.s3.amazonaws.com/i/jkuj0epudrbq9v57px95.png)
 
-## **Create basic iOS app project**
+### **Create basic iOS app project**
 
-I created a SingleView Swift project and called it _aws_amplify_integration_.
+I created a SingleView Swift project and called it *aws_amplify_integration*.
 
-![app template](/img/screenshot_2019-05-18_at_16.51.21.png "SingleView app template")
 
-Folder structure
+| ![](https://thepracticaldev.s3.amazonaws.com/i/f8f2qlo7zo9kupeo3fbg.png)  | ![](https://thepracticaldev.s3.amazonaws.com/i/r8rsbdfnjskgata8qw3m.png) |
+|:---:|:---:|
+
+### **Folder structure**
 
 Here's a screenshot with what I propose to be the folder structure:
 
-![folder structure](/img/screenshot_2019-05-18_at_16.49.21.png "Folder structure")
+![](https://thepracticaldev.s3.amazonaws.com/i/m6e803ezcx4t9vplruhg.png)
 
-## Customise UI
+### **Customise UI**
 
 The UI is pretty basic for the sake of the tutorial. 
 
 The Github link to the project can please your curiosity if you want to take a look over the xib files.
 
-[calincrist/aws_amplify_integration | GitHub](https://github.com/calincrist/aws_amplify_integration.git)
+### **Add AWS Amplify libs**
 
-## Add AWS Amplify libs
+What needs to be done is very well explained on AWS Amplify docs ([https://aws-amplify.github.io/docs/ios/start](https://aws-amplify.github.io/docs/ios/start)). But I will extract the important steps.
 
-What needs to be done is very well explained on AWS Amplify docs (<https://aws-amplify.github.io/docs/ios/start>). But I will extract the important steps.
-
-### Install AWS Amplify
+### **Install AWS Amplify**
 
 Install Nodejs and npm, and then run:
 
-```
+```bash
 npm install -g @aws-amplify/cli
 amplify configure
 ```
 
 Install Cocoapods:
-
-```
+```bash
 sudo gem install cocoapods
 pod init
 ```
 
 Open the Podfile and add the pods for AWS Mobile SDK to work:
-
-```
+```ruby
 platform :ios, '11.0'
-
+    
 target 'aws_amplify_integration' do
-  use_frameworks!
-  pod 'AWSCore', '~> 2.9.0'
-  pod 'AWSMobileClient', '~> 2.9.0'
+    use_frameworks!
+    pod 'AWSCore', '~> 2.9.0'
+    pod 'AWSMobileClient', '~> 2.9.0'
 end
 ```
 
 Install dependencies:
-
-```
+```bash
 pod install --repo-update
 ```
 
-Remember to open the newly created _aws_amplify_integration.workspace._
+Remember to open the newly created *aws_amplify_integration.workspace.*
 
 Build the project in Xcode.
 
-### Setup AWS services
+### **Setup AWS services**
 
 What needs to be done is to create new AWS backend resources. After that, pull the AWS services configuration into the app.
 
@@ -114,670 +112,654 @@ In a terminal window, navigate to your project folder (the folder that contains 
 
 Run the following command (for this app, accepting all defaults is OK):
 
-```
-amplify init        #accept defaults
-amplify push        #creates configuration file
+```bash
+    amplify init        #accept defaults
+    amplify push        #creates configuration file
 ```
 
 In the Finder, drag `awsconfiguration.json` into Xcode under the top Project Navigator folder (the folder name should match your Xcode project name). When the `Options` dialog box that appears, do the following:
 
-* Clear the `Copy items if needed` check box.
-* Choose `Create groups`, and then choose `Next`.
+- Clear the `Copy items if needed` check box.
+- Choose `Create groups`, and then choose `Next`.
 
-### Add Auth
+### **Add Auth**
 
 To enjoy the automated setup, run the following command in your project’s root folder.
 
 The CLI prompts will help you to customize your auth flow for your app.
-
-```
-amplify add auth
+```bash
+    amplify add auth
 ```
 
 After configuring your Authentication options, update your backend:
-
-```
-amplify push
+```bash
+    amplify push
 ```
 
 Now, the `awsconfiguration.json` is updated with Cognito configs:
 
-![](/img/screenshot_2019-05-18_at_17-857c70a8-0cf7-439a-8c40-b1d2adf2928f.48.49.png)
+![](https://thepracticaldev.s3.amazonaws.com/i/gpegddteqeh6yqw7tb5w.png)
 
 If it's not, make sure that you added this file to your project.
 
-## Integrate Amplify Auth
+## **Integrate Amplify Auth**
 
 ### Check for auth state
 
-First, `AWSMobileClient` needs to be imported to use the client to check for the authentication state.
+First, AWSMobileClient needs to be imported to use the client to check for the authentication state.
 
-By calling _sharedInstance()_ the configurations are being pulled from `awsconfiguration.json`. This manages the users' session for auth tasks like automatic credentials management and refresh routines.
+By calling *sharedInstance()* the configurations are being pulled from *awsconfiguration.json.* This manages the users' session for auth tasks like automatic credentials management and refresh routines.
 
-The _initialize()_ method will start a new session. The result contains an ENUM value that exposes the current user state:
-
+The *initialize()* method will start a new session. The result contains an ENUM value that exposes the current user state:
+```swift
+    public enum UserState: String {
+        case signedIn, signedOut, signedOutFederatedTokensInvalid, signedOutUserPoolsTokenInvalid, guest, unknown
+    }
 ```
-public enum UserState: String {
-    case signedIn, signedOut, signedOutFederatedTokensInvalid, signedOutUserPoolsTokenInvalid, guest, unknown
-}
-```
 
-We can take advantage of this workflow to determine what to present to the user. For this example we use _signedIn_.
+We can take advantage of this workflow to determine what to present to the user. For this example we use *signedIn.*
 
-If the user is logged in we can redirect to _MainViewController,_ otherwise to _LoginViewController._
-
-```
-import UIKit
-import AWSMobileClient
-
-class SplashViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        AWSMobileClient.sharedInstance().initialize { (userState, error) in
-            if let error = error {
-                print("error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let userState = userState else {
-                return
-            }
-            
-            print("The user is \(userState.rawValue).")
-            
-            // Check user availability
-            switch userState {
-            case .signedIn:
-                // Show home page
-                let mainViewController = MainViewController()
-                UIApplication.setRootView(mainViewController)
-                break
+If the user is logged in we can redirect to *MainViewController,* otherwise to *LoginViewController.*
+```swift
+    import UIKit
+    import AWSMobileClient
+    
+    class SplashViewController: UIViewController {
+    
+        override func viewDidLoad() {
+            super.viewDidLoad()
+    
+            AWSMobileClient.sharedInstance().initialize { (userState, error) in
+                if let error = error {
+                    print("error: \(error.localizedDescription)")
+                    return
+                }
                 
-            default:
-                // Show login page
-                let loginViewController = LoginViewController()
-                UIApplication.setRootView(loginViewController)
-                break
+                guard let userState = userState else {
+                    return
+                }
+                
+                print("The user is \(userState.rawValue).")
+                
+                // Check user availability
+                switch userState {
+                case .signedIn:
+                    // Show home page
+                    let mainViewController = MainViewController()
+                    UIApplication.setRootView(mainViewController)
+                    break
+                    
+                default:
+                    // Show login page
+                    let loginViewController = LoginViewController()
+                    UIApplication.setRootView(loginViewController)
+                    break
+                }
             }
         }
     }
-}
 ```
 
-In AppDelegate.swift's method _didFinishLaunchingWithOptions_ we present the _SplashScreenViewController_.
-
-```
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+In AppDelegate.swift's method didFinishLaunchingWithOptions we present the SplashScreenViewController.
+```swift
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-    IQKeyboardManager.shared.enable = true
-    window = UIWindow(frame: UIScreen.main.bounds)
-    
-    if let window = window {
-        window.backgroundColor = #colorLiteral(red: 0.9960784314, green: 0.9960784314, blue: 0.9960784314, alpha: 1)
+        window = UIWindow(frame: UIScreen.main.bounds)
         
-        let splashViewController = SplashViewController()
-        window.makeKeyAndVisible()
-        window.rootViewController = splashViewController
+        if let window = window {
+            window.backgroundColor = #colorLiteral(red: 0.9960784314, green: 0.9960784314, blue: 0.9960784314, alpha: 1)
+            
+            let splashViewController = SplashViewController()
+            window.makeKeyAndVisible()
+            window.rootViewController = splashViewController
+            
+        }
         
+        return true
     }
-    
-    return true
-}
 ```
 
 ### Login flow
 
-When the user is not signed in the login screen in presented.
-From here the user can:
+When the user is not signed in the login screen in presented. 
 
-* enter a username and a password to login
-* go to sign up flow
-* go to reset password flow
+From here we can:
 
-The outlets are referenced to _UITextFields_ and the _touch up inside event_ is referenced to the login method. 
+- enter a username and a password to login
+- go to sign up flow
+- go to reset password flow
 
-Now, in this method, we can use _AWSMobileClient_ to sign in using a username and a password. This action calls a completion handler when a result is available.
+The outlets are referenced to *UITextFields* and the *touch up inside event* is referenced to the login method. 
 
+Now, in this method, we can use *AWSMobileClient* to sign in using a username and a password. This action calls a completion handler when a result is available.
+
+```swift
+    public func signIn(username: String, 
+    									 password: String, 
+    									 validationData: [String: String]? = nil, 
+    									 completionHandler: @escaping ((SignInResult?, Error?) -> Void))
 ```
-public func signIn(username: String, 
-									 password: String, 
-									 validationData: [String: String]? = nil, 
-									 completionHandler: @escaping ((SignInResult?, Error?) -> Void))
-```
 
-The error is a _AWSMobileClientError_ enum value. This enum has 42 cases.
+The error is a *AWSMobileClientError* enum value. This enum has 42 cases.
 
 Usually, your needs won't reach all the client errors. But it's a good practice to handle most of them to give proper feedback to the users.
-
-```
-/// The error enum for `AWSMobileClient` errors.
-public enum AWSMobileClientError: Error {
-    case aliasExists(message: String)
-    case codeDeliveryFailure(message: String)
-    case codeMismatch(message: String)
-    case expiredCode(message: String)
-    case groupExists(message: String)
-    case internalError(message: String)
-    case invalidLambdaResponse(message: String)
-    case invalidOAuthFlow(message: String)
-    case invalidParameter(message: String)
-    case invalidPassword(message: String)
-    case invalidUserPoolConfiguration(message: String)
-    case limitExceeded(message: String)
-    case mfaMethodNotFound(message: String)
-    case notAuthorized(message: String)
-    case passwordResetRequired(message: String)
-    case resourceNotFound(message: String)
-    case scopeDoesNotExist(message: String)
-    case softwareTokenMFANotFound(message: String)
-    case tooManyFailedAttempts(message: String)
-    case tooManyRequests(message: String)
-    case unexpectedLambda(message: String)
-    case userLambdaValidation(message: String)
-    case userNotConfirmed(message: String)
-    case userNotFound(message: String)
-    case usernameExists(message: String)
-    case unknown(message: String)
-    case notSignedIn(message: String)
-    case identityIdUnavailable(message: String)
-    case guestAccessNotAllowed(message: String)
-    case federationProviderExists(message: String)
-    case cognitoIdentityPoolNotConfigured(message: String)
-    case unableToSignIn(message: String)
-    case invalidState(message: String)
-    case userPoolNotConfigured(message: String)
-    case userCancelledSignIn(message: String)
-    case badRequest(message: String)
-    case expiredRefreshToken(message: String)
-    case errorLoadingPage(message: String)
-    case securityFailed(message: String)
-    case idTokenNotIssued(message: String)
-    case idTokenAndAcceessTokenNotIssued(message: String)
-    case invalidConfiguration(message: String)
-    case deviceNotRemembered(message: String)
-}
-```
-
-When there is no error, the `SignInResult` contains the state of the user.
-
-```
-public enum SignInState: String {
-    case unknown = "UNKNOWN"
-    case smsMFA = "CONFIRMATION_CODE"
-    case passwordVerifier = "PASSWORD_VERIFIER"
-    case customChallenge = "CUSTOM_CHALLENGE"
-    case deviceSRPAuth = "DEVICE_SRP_AUTH"
-    case devicePasswordVerifier = "DEVICE_PASSWORD_VERIFIER"
-    case adminNoSRPAuth = "ADMIN_NO_SRP_AUTH"
-    case newPasswordRequired = "NEW_PASSWORD_REQUIRED"
-    case signedIn = "SIGN_IN_COMPLETE"
-}
+```swift
+    /// The error enum for `AWSMobileClient` errors.
+    public enum AWSMobileClientError: Error {
+        case aliasExists(message: String)
+        case codeDeliveryFailure(message: String)
+        case codeMismatch(message: String)
+        case expiredCode(message: String)
+        case groupExists(message: String)
+        case internalError(message: String)
+        case invalidLambdaResponse(message: String)
+        case invalidOAuthFlow(message: String)
+        case invalidParameter(message: String)
+        case invalidPassword(message: String)
+        case invalidUserPoolConfiguration(message: String)
+        case limitExceeded(message: String)
+        case mfaMethodNotFound(message: String)
+        case notAuthorized(message: String)
+        case passwordResetRequired(message: String)
+        case resourceNotFound(message: String)
+        case scopeDoesNotExist(message: String)
+        case softwareTokenMFANotFound(message: String)
+        case tooManyFailedAttempts(message: String)
+        case tooManyRequests(message: String)
+        case unexpectedLambda(message: String)
+        case userLambdaValidation(message: String)
+        case userNotConfirmed(message: String)
+        case userNotFound(message: String)
+        case usernameExists(message: String)
+        case unknown(message: String)
+        case notSignedIn(message: String)
+        case identityIdUnavailable(message: String)
+        case guestAccessNotAllowed(message: String)
+        case federationProviderExists(message: String)
+        case cognitoIdentityPoolNotConfigured(message: String)
+        case unableToSignIn(message: String)
+        case invalidState(message: String)
+        case userPoolNotConfigured(message: String)
+        case userCancelledSignIn(message: String)
+        case badRequest(message: String)
+        case expiredRefreshToken(message: String)
+        case errorLoadingPage(message: String)
+        case securityFailed(message: String)
+        case idTokenNotIssued(message: String)
+        case idTokenAndAcceessTokenNotIssued(message: String)
+        case invalidConfiguration(message: String)
+        case deviceNotRemembered(message: String)
+    }
 ```
 
-Here is the entire implementation and handling.
-
-When the sign in in complete, redirect to _MainViewController._
-
+When there is no error, the *SignInResult* contains the state of the user.
+```swift
+    public enum SignInState: String {
+        case unknown = "UNKNOWN"
+        case smsMFA = "CONFIRMATION_CODE"
+        case passwordVerifier = "PASSWORD_VERIFIER"
+        case customChallenge = "CUSTOM_CHALLENGE"
+        case deviceSRPAuth = "DEVICE_SRP_AUTH"
+        case devicePasswordVerifier = "DEVICE_PASSWORD_VERIFIER"
+        case adminNoSRPAuth = "ADMIN_NO_SRP_AUTH"
+        case newPasswordRequired = "NEW_PASSWORD_REQUIRED"
+        case signedIn = "SIGN_IN_COMPLETE"
+    }
 ```
-import UIKit
-import AWSMobileClient
 
-class LoginViewController: UIViewController {
-
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-
-    @IBAction func login(_ sender: Any) {
-        
-        guard let username = usernameTextField.text,
-            let password = passwordTextField.text  else {
-            print("Enter some values please.")
-            return
-        }
-        
-        print("\(username) and \(password)")
-        
-        AWSMobileClient.sharedInstance().signIn(username: username, password: password) { 
-						(signInResult, error) in
-
-	            if let error = error  {
-	                print("There's an error : \(error.localizedDescription)")
-	                print(error)
-	                return
-	            }
-	            
-	            guard let signInResult = signInResult else {
-	                return
-	            }
-	            
-	            switch (signInResult.signInState) {
-	            case .signedIn:
-	                print("User is signed in.")
-	                
-	                DispatchQueue.main.async {
-	                    let mainViewController = MainViewController()
-	                    UIApplication.setRootView(mainViewController)
-	                }
-	                
-	            case .newPasswordRequired:
-	                print("User needs a new password.")
-	            default:
-	                print("Sign In needs info which is not et supported.")
-	            }
+Here are​ the entire implementation and handling.
+When the sign in is complete, redirect to *MainViewController.*
+```swift
+    import UIKit
+    import AWSMobileClient
+    
+    class LoginViewController: UIViewController {
+    
+        @IBOutlet weak var usernameTextField: UITextField!
+        @IBOutlet weak var passwordTextField: UITextField!
+    
+        @IBAction func login(_ sender: Any) {
+            
+            guard let username = usernameTextField.text,
+                let password = passwordTextField.text  else {
+                print("Enter some values please.")
+                return
+            }
+            
+            print("\(username) and \(password)")
+            
+            AWSMobileClient.sharedInstance().signIn(username: username, password: password) { 
+    						(signInResult, error) in
+    
+    	            if let error = error  {
+    	                print("There's an error : \(error.localizedDescription)")
+    	                print(error)
+    	                return
+    	            }
+    	            
+    	            guard let signInResult = signInResult else {
+    	                return
+    	            }
+    	            
+    	            switch (signInResult.signInState) {
+    	            case .signedIn:
+    	                print("User is signed in.")
+    	                
+    	                DispatchQueue.main.async {
+    	                    let mainViewController = MainViewController()
+    	                    UIApplication.setRootView(mainViewController)
+    	                }
+    	                
+    	            case .newPasswordRequired:
+    	                print("User needs a new password.")
+    	            default:
+    	                print("Sign In needs info which is not et supported.")
+    	            }
+            }
         }
     }
-}
 ```
 
-### Sign Up flow
+### **Sign Up flow**
 
 Here we have 2 screens to complete this flow:
 
-1. Enter account details (full name, email, username, password) 
-   * _SignUpViewController_
-2. Confirm the verification code
-   * _ConfirmSignUpViewController_
+1. Enter your account details (full name, email, username, password) 
+    - *SignUpViewController*
+2. Confirm the verification code 
+    - *ConfirmSignUpViewController*
 
 In AWS Amplify, signing up and confirming look very similar to the sign in process. 
 
-The only thing that is different is the result. It's using `SignUpResult` that contains the signUp confirmation state.
-
+The only thing that is different is the result. It's using *SignUpResult* that contains the signUp confirmation state.
+```swift
+    /// Indicates the state of user during the sign up operation.
+    public enum SignUpConfirmationState {
+        case confirmed, unconfirmed, unknown
+    }
 ```
-/// Indicates the state of user during the sign up operation.
-public enum SignUpConfirmationState {
-    case confirmed, unconfirmed, unknown
-}
-```
 
-When the state is _unconfirmed,_ Cognito sends a verification code. It can be through SMS or Email, depending on how Cognito is configured. 
+When the state is *unconfirmed,* Cognito sends a verification code. It can be through SMS or Email, depending on how Cognito is configured. 
 
 Then, the app proceeds to the confirmation screen.
-
-```
-import AWSMobileClient
-
-class SignUpViewController: UIViewController {
-
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var fullNameTextField: UITextField!
+```swift
+    import AWSMobileClient
     
-		@IBAction func createAccount(_ sender: Any) {
+    class SignUpViewController: UIViewController {
+    
+        @IBOutlet weak var passwordTextField: UITextField!
+        @IBOutlet weak var usernameTextField: UITextField!
+        @IBOutlet weak var emailTextField: UITextField!
+        @IBOutlet weak var fullNameTextField: UITextField!
         
-        guard let fullName = fullNameTextField.text,
-            let email = emailTextField.text,
-            let username = usernameTextField.text,
-            let password = passwordTextField.text else {
-            return
+    		@IBAction func createAccount(_ sender: Any) {
+            
+            guard let fullName = fullNameTextField.text,
+                let email = emailTextField.text,
+                let username = usernameTextField.text,
+                let password = passwordTextField.text else {
+                return
+            }
+            
+            AWSMobileClient.sharedInstance().signUp(username: username,
+                                                    password: password,
+                                                    userAttributes: ["email" : email, "name": fullName],
+                                                    completionHandler: signUpHandler);
+        }
+    
+        func signUpHandler(signUpResult: SignUpResult?, error: Error?) {
+            
+            if let error = error {
+                if let error = error as? AWSMobileClientError {
+                    switch(error) {
+                    case .usernameExists(let message):
+                        print(message)
+                    default:
+                        break
+                    }
+                }
+                print("There's an error on signup: \(error.localizedDescription), \(error)")
+            }
+            
+            guard let signUpResult = signUpResult else {
+                return
+            }
+            
+            switch(signUpResult.signUpConfirmationState) {
+            case .confirmed:
+                print("User is signed up and confirmed.")
+                
+                DispatchQueue.main.async {
+                    let mainViewController = MainViewController()
+                    UIApplication.setRootView(mainViewController)
+                }
+                
+            case .unconfirmed:
+                let alert = UIAlertController(title: "Code sent",
+                                              message: "Confirmation code sent via \(signUpResult.codeDeliveryDetails!.deliveryMedium) to: \(signUpResult.codeDeliveryDetails!.destination!)",
+                    preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel) { _ in
+                    guard let username = self.usernameTextField.text else {
+                        return
+                    }
+                    let confirmSignupViewController = ConfirmSignUpViewController(username: username)
+                    self.navigationController?.pushViewController(confirmSignupViewController, animated: true)
+                })
+                
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            case .unknown:
+                print("Unexpected case")
+            }
         }
         
-        AWSMobileClient.sharedInstance().signUp(username: username,
-                                                password: password,
-                                                userAttributes: ["email" : email, "name": fullName],
-                                                completionHandler: signUpHandler);
+        @IBAction func dismissModal(_ sender: Any) {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
     }
+```
 
-    func signUpHandler(signUpResult: SignUpResult?, error: Error?) {
+ConfirmSignUpViewController:
+```swift
+    import AWSMobileClient
+    
+    class ConfirmSignUpViewController: UIViewController {
+    
+        @IBOutlet weak var verificationCodeTextField: UITextField!
+        var username: String?
         
-        if let error = error {
-            if let error = error as? AWSMobileClientError {
-                switch(error) {
-                case .usernameExists(let message):
-                    print(message)
-                default:
-                    break
-                }
-            }
-            print("There's an error on signup: \(error.localizedDescription), \(error)")
+        init(username: String, nibName nibNameOrNil: String? = nil, bundle nibBundleOrNil: Bundle? = nil) {
+            self.username = username
+            super.init(nibName:nibNameOrNil, bundle: nibBundleOrNil)
         }
         
-        guard let signUpResult = signUpResult else {
-            return
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
         }
-        
-        switch(signUpResult.signUpConfirmationState) {
-        case .confirmed:
-            print("User is signed up and confirmed.")
+    
+    		@IBAction func confirmSignUp(_ sender: Any) {
             
-            DispatchQueue.main.async {
-                let mainViewController = MainViewController()
-                UIApplication.setRootView(mainViewController)
+            guard let verificationCode = verificationCodeTextField.text,
+                let username = self.username else {
+                print("No username")
+                return
             }
             
-        case .unconfirmed:
-            let alert = UIAlertController(title: "Code sent",
-                                          message: "Confirmation code sent via \(signUpResult.codeDeliveryDetails!.deliveryMedium) to: \(signUpResult.codeDeliveryDetails!.destination!)",
-                preferredStyle: .alert)
+            AWSMobileClient.sharedInstance().confirmSignUp(username: username,
+                                                           confirmationCode: verificationCode,
+                                                           completionHandler: handleConfirmation)
+        }
+    
+    		func handleConfirmation(signUpResult: SignUpResult?, error: Error?) {
+            if let error = error {
+                print("\(error)")
+                return
+            }
             
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel) { _ in
-                guard let username = self.usernameTextField.text else {
-                    return
+            guard let signUpResult = signUpResult else {
+                return
+            }
+            
+            switch(signUpResult.signUpConfirmationState) {
+            case .confirmed:
+                print("User is signed up and confirmed.")
+                
+                DispatchQueue.main.async {
+                    let mainViewController = MainViewController()
+                    UIApplication.setRootView(mainViewController)
                 }
-                let confirmSignupViewController = ConfirmSignUpViewController(username: username)
-                self.navigationController?.pushViewController(confirmSignupViewController, animated: true)
-            })
+                
+            case .unconfirmed:
+                print("User is not confirmed and needs verification via \(signUpResult.codeDeliveryDetails!.deliveryMedium) sent at \(signUpResult.codeDeliveryDetails!.destination!)")
+            case .unknown:
+                print("Unexpected case")
+            }
+        }
+    
+        @IBAction func resendCode(_ sender: Any) {
+            guard let username = self.username else {
+                print("No username")
+                return
+            }
+            
+            AWSMobileClient.sharedInstance().resendSignUpCode(username: username,
+                                                              completionHandler: resendSignUpHandler)
+        }
+    
+        func resendSignUpHandler(result: SignUpResult?, error: Error?) {
+            if let error = error {
+                print("\(error)")
+                return
+            }
+            
+            guard let signUpResult = result else {
+                return
+            }
+            
+            let message = "A verification code has been sent via \(signUpResult.codeDeliveryDetails!.deliveryMedium) at \(signUpResult.codeDeliveryDetails!.destination!)"
+            let alert = UIAlertController(title: "Code Sent",
+                                          message: message,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in
+                //Cancel Action
+            }))
             
             DispatchQueue.main.async {
                 self.present(alert, animated: true, completion: nil)
             }
-            
-        case .unknown:
-            print("Unexpected case")
-        }
-    }
-    
-    @IBAction func dismissModal(_ sender: Any) {
-        self.navigationController?.dismiss(animated: true, completion: nil)
-    }
-}
-```
-
-_ConfirmSignUpViewController.swift_:
-
-```
-import AWSMobileClient
-
-class ConfirmSignUpViewController: UIViewController {
-
-    @IBOutlet weak var verificationCodeTextField: UITextField!
-    var username: String?
-    
-    init(username: String, nibName nibNameOrNil: String? = nil, bundle nibBundleOrNil: Bundle? = nil) {
-        self.username = username
-        super.init(nibName:nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-		@IBAction func confirmSignUp(_ sender: Any) {
-        
-        guard let verificationCode = verificationCodeTextField.text,
-            let username = self.username else {
-            print("No username")
-            return
         }
         
-        AWSMobileClient.sharedInstance().confirmSignUp(username: username,
-                                                       confirmationCode: verificationCode,
-                                                       completionHandler: handleConfirmation)
-    }
-
-		func handleConfirmation(signUpResult: SignUpResult?, error: Error?) {
-        if let error = error {
-            print("\(error)")
-            return
-        }
-        
-        guard let signUpResult = signUpResult else {
-            return
-        }
-        
-        switch(signUpResult.signUpConfirmationState) {
-        case .confirmed:
-            print("User is signed up and confirmed.")
-            
-            DispatchQueue.main.async {
-                let mainViewController = MainViewController()
-                UIApplication.setRootView(mainViewController)
-            }
-            
-        case .unconfirmed:
-            print("User is not confirmed and needs verification via \(signUpResult.codeDeliveryDetails!.deliveryMedium) sent at \(signUpResult.codeDeliveryDetails!.destination!)")
-        case .unknown:
-            print("Unexpected case")
+        @IBAction func dismissModal(_ sender: Any) {
+            self.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
-
-    @IBAction func resendCode(_ sender: Any) {
-        guard let username = self.username else {
-            print("No username")
-            return
-        }
-        
-        AWSMobileClient.sharedInstance().resendSignUpCode(username: username,
-                                                          completionHandler: resendSignUpHandler)
-    }
-
-    func resendSignUpHandler(result: SignUpResult?, error: Error?) {
-        if let error = error {
-            print("\(error)")
-            return
-        }
-        
-        guard let signUpResult = result else {
-            return
-        }
-        
-        let message = "A verification code has been sent via \(signUpResult.codeDeliveryDetails!.deliveryMedium) at \(signUpResult.codeDeliveryDetails!.destination!)"
-        let alert = UIAlertController(title: "Code Sent",
-                                      message: message,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in
-            //Cancel Action
-        }))
-        
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    @IBAction func dismissModal(_ sender: Any) {
-        self.navigationController?.dismiss(animated: true, completion: nil)
-    }
-}
 ```
 
 ### Reset password flow
 
 This flow is a 2 step process. 
 
-First, the user has to receive a confirmation code through email or SMS. 
-It is done by calling `forgotPassword(username: username)`. The details about how the code was sent can be retrieved from the `UserCodeDeliveryDetails` included in the response.
+First, the user has to receive a confirmation code through email or SMS. It is done by calling forgotPassword(username: username). The details about how the code was sent can be retrieved from the UserCodeDeliveryDetails included in the response.
 
-```
-/// Indicates the state of forgot password operation.
-public enum ForgotPasswordState {
-    case done, confirmationCodeSent
-}
-
-/// Contains the result of the forgot password operation.
-public struct ForgotPasswordResult {
-    public let forgotPasswordState: ForgotPasswordState
-    public let codeDeliveryDetails: UserCodeDeliveryDetails?
-    
-    internal init(forgotPasswordState: ForgotPasswordState, codeDeliveryDetails: UserCodeDeliveryDetails?) {
-        self.forgotPasswordState = forgotPasswordState
-        self.codeDeliveryDetails = codeDeliveryDetails
+```swift
+    /// Indicates the state of forgot password operation.
+    public enum ForgotPasswordState {
+        case done, confirmationCodeSent
     }
-}
+    
+    /// Contains the result of the forgot password operation.
+    public struct ForgotPasswordResult {
+        public let forgotPasswordState: ForgotPasswordState
+        public let codeDeliveryDetails: UserCodeDeliveryDetails?
+        
+        internal init(forgotPasswordState: ForgotPasswordState, codeDeliveryDetails: UserCodeDeliveryDetails?) {
+            self.forgotPasswordState = forgotPasswordState
+            self.codeDeliveryDetails = codeDeliveryDetails
+        }
+    }
 ```
 
 Then this code is used to confirm the new password.
-
+```swift
+    confirmForgotPassword(username: username, 
+                       newPassword: newPassword, 
+                  confirmationCode: confirmationCode)
 ```
-confirmForgotPassword(username: username, newPassword: newPassword, confirmationCode: confirmationCode)
-```
-
 Here we have 2 screens:
 
-1. To enter the username
-   * ResetPasswordViewController
+1. Enter username
+    - ResetPasswordViewController
 2. Confirm the verification code and enter a new password
-   * NewPasswordViewController
+    - NewPasswordViewController
 
 
-```
-import UIKit
-import AWSMobileClient    
-class ResetPasswordViewController: UIViewController {
-
-    @IBOutlet weak var usernameTextField: UITextField!
+ResetPasswordViewController:
+```swift
+    import UIKit
+    import AWSMobileClient
     
-    @IBAction func submitUsername(_ sender: Any) {
+    class ResetPasswordViewController: UIViewController {
+    
+        @IBOutlet weak var usernameTextField: UITextField!
         
-        guard let username = usernameTextField.text else {
-            print("No username")
-            return
+        @IBAction func submitUsername(_ sender: Any) {
+            
+            guard let username = usernameTextField.text else {
+                print("No username")
+                return
+            }
+            
+            AWSMobileClient.sharedInstance().forgotPassword(username: username) { (forgotPasswordResult, error) in
+                if let forgotPasswordResult = forgotPasswordResult {
+                    switch(forgotPasswordResult.forgotPasswordState) {
+                    case .confirmationCodeSent:
+                        guard let codeDeliveryDetails = forgotPasswordResult.codeDeliveryDetails else {
+                            return
+                        }
+                        
+                        let alert = UIAlertController(title: "Code sent",
+                                                      message: "Confirmation code sent via \(codeDeliveryDetails.deliveryMedium) to: \(codeDeliveryDetails.destination!)",
+                                                      preferredStyle: .alert)
+                        
+                        DispatchQueue.main.async {
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        
+                    default:
+                        print("Error: Invalid case.")
+                    }
+                } else if let error = error {
+                    print("Error occurred: \(error.localizedDescription)")
+                }
+            }
+        
+        
         }
         
-        AWSMobileClient.sharedInstance().forgotPassword(username: username) { (forgotPasswordResult, error) in
-            if let forgotPasswordResult = forgotPasswordResult {
-                switch(forgotPasswordResult.forgotPasswordState) {
-                case .confirmationCodeSent:
-                    guard let codeDeliveryDetails = forgotPasswordResult.codeDeliveryDetails else {
-                        return
+        @IBAction func dismiss(_ sender: Any) {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
+    }
+```
+
+NewPasswordViewController:
+```swift
+    import UIKit
+    import AWSMobileClient
+    
+    class NewPasswordViewController: UIViewController {
+        
+        @IBOutlet weak var verificationCodeTextField: UITextField!
+        @IBOutlet weak var newPasswordTextField: UITextField!
+        
+        var username: String?
+        
+        init(username: String, nibName nibNameOrNil: String? = nil, bundle nibBundleOrNil: Bundle? = nil) {
+            self.username = username
+            super.init(nibName:nibNameOrNil, bundle: nibBundleOrNil)
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    
+        @IBAction func verifyCode(_ sender: Any) {
+            
+            guard let username = username,
+                let newPassword = newPasswordTextField.text,
+                let confirmationCode = verificationCodeTextField.text else {
+                return
+            }
+            
+            AWSMobileClient.sharedInstance().confirmForgotPassword(username: username,
+                                                                   newPassword: newPassword,
+                                                                   confirmationCode: confirmationCode) { (forgotPasswordResult, error) in
+                if let forgotPasswordResult = forgotPasswordResult {
+                    switch(forgotPasswordResult.forgotPasswordState) {
+                    case .done:
+                        self.dismiss(self)
+                    default:
+                        print("Error: Could not change password.")
                     }
-                    
-                    let alert = UIAlertController(title: "Code sent",
-                                                  message: "Confirmation code sent via \(codeDeliveryDetails.deliveryMedium) to: \(codeDeliveryDetails.destination!)",
-                                                  preferredStyle: .alert)
-                    
-                    DispatchQueue.main.async {
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                    
-                default:
-                    print("Error: Invalid case.")
+                } else if let error = error {
+                    print("Error occurred: \(error.localizedDescription)")
                 }
-            } else if let error = error {
-                print("Error occurred: \(error.localizedDescription)")
             }
         }
-    
-    
-    }
-    
-    @IBAction func dismiss(_ sender: Any) {
-        self.navigationController?.dismiss(animated: true, completion: nil)
-    }
-}
-```
-
-_NewPasswordViewController_:
-
-```
-import UIKit
-import AWSMobileClient
-
-class NewPasswordViewController: UIViewController {
-    
-    @IBOutlet weak var verificationCodeTextField: UITextField!
-    @IBOutlet weak var newPasswordTextField: UITextField!
-    
-    var username: String?
-    
-    init(username: String, nibName nibNameOrNil: String? = nil, bundle nibBundleOrNil: Bundle? = nil) {
-        self.username = username
-        super.init(nibName:nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    @IBAction func verifyCode(_ sender: Any) {
         
-        guard let username = username,
-            let newPassword = newPasswordTextField.text,
-            let confirmationCode = verificationCodeTextField.text else {
-            return
-        }
-        
-        AWSMobileClient.sharedInstance().confirmForgotPassword(username: username,
-                                                               newPassword: newPassword,
-                                                               confirmationCode: confirmationCode) { (forgotPasswordResult, error) in
-            if let forgotPasswordResult = forgotPasswordResult {
-                switch(forgotPasswordResult.forgotPasswordState) {
-                case .done:
-                    self.dismiss(self)
-                default:
-                    print("Error: Could not change password.")
-                }
-            } else if let error = error {
-                print("Error occurred: \(error.localizedDescription)")
-            }
+        @IBAction func dismiss(_ sender: Any) {
+            self.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
-    
-    @IBAction func dismiss(_ sender: Any) {
-        self.navigationController?.dismiss(animated: true, completion: nil)
-    }
-}
 ```
 
 ### Sign Out action
 
-There is not much to say about it :) 
-Call the following and the user will be logged out from the current device by clearing the local keychain store.
-
-```
-AWSMobileClient.sharedInstance().signOut()
+There is not much to say about it :) Call the following and the user will be logged out from the current device by clearing the local keychain store.
+```swift
+    AWSMobileClient.sharedInstance().signOut()
 ```
 
 Also, this can be a global action that logs out the user from all active sessions - all the devices. It invalidates all tokens: id token, access token and refresh token. 
 
 Although the tokens are revoked, the AWS credentials will remain valid until they expire (which by default is 1 hour).
 
-This is not a default behaviour, so we need to specify the signOut options using a `SignOutOptions` object:
+This is not a default behaviour, so we need to specify the signOut options using a SignOutOptions object:
 
-```
-/// Signout options to change the default behavior.
-public struct SignOutOptions {
-    let invalidateTokens: Bool
-    let signOutGlobally: Bool
-    
-    /// Initializer: Signout options to change the default behavior.
-    ///
-    /// - Parameters:
-    ///   - signOutGlobally: Invalidate all active sessions with the service. The user will be logged out of all devices.
-    ///   - invalidateTokens: If functionality available, the access token, refresh token and id token will be invalidated and won't be usable.
-    public init(signOutGlobally: Bool = false, invalidateTokens: Bool = true) {
-        self.signOutGlobally = signOutGlobally
-        self.invalidateTokens = invalidateTokens
+```swift
+    /// Signout options to change the default behavior.
+    public struct SignOutOptions {
+        let invalidateTokens: Bool
+        let signOutGlobally: Bool
+        
+        /// Initializer: Signout options to change the default behavior.
+        ///
+        /// - Parameters:
+        ///   - signOutGlobally: Invalidate all active sessions with the service. The user will be logged out of all devices.
+        ///   - invalidateTokens: If functionality available, the access token, refresh token and id token will be invalidated and won't be usable.
+        public init(signOutGlobally: Bool = false, invalidateTokens: Bool = true) {
+            self.signOutGlobally = signOutGlobally
+            self.invalidateTokens = invalidateTokens
+        }
     }
-}
+```
+```swift
+    AWSMobileClient.sharedInstance().signOut(options: SignOutOptions(signOutGlobally: true)) { (error) in
+        print("Error: \(error.debugDescription)")
+    }
 ```
 
-Applying options would look like this:
-
-```
-AWSMobileClient.sharedInstance().signOut(options: SignOutOptions(signOutGlobally: true)) { (error) in
-    print("Error: \(error.debugDescription)")
-}
-```
-
-_MainViewController.swift_:
-
-```
-import UIKit
-import AWSMobileClient
-
-class MainViewController: UIViewController {
-
-    @IBOutlet weak var logOutButton: UIButton!
-
-    @IBAction func logOut(_ sender: Any) {
-        AWSMobileClient.sharedInstance().signOut() { error in
-            if let error = error {
-                print(error)
-                return
+MainViewController:
+```swift
+    import UIKit
+    import AWSMobileClient
+    
+    class MainViewController: UIViewController {
+    
+        @IBOutlet weak var logOutButton: UIButton!
+    
+        @IBAction func logOut(_ sender: Any) {
+            AWSMobileClient.sharedInstance().signOut() { error in
+                if let error = error {
+                    print(error)
+                    return
+                }
             }
+            
+            
+            let loginViewController = LoginViewController()
+            UIApplication.setRootView(loginViewController)
         }
         
-        
-        let loginViewController = LoginViewController()
-        UIApplication.setRootView(loginViewController)
     }
-    
-}
 ```
+When the _signOut()_ action is complete, present the login screen.
 
-## Conclusion
+
+## **Conclusion**
 
 That's it! And it's just one component from many others.
 
@@ -785,8 +767,6 @@ The Amplify library is a real game changer when it comes to development speed an
 
 It's really nice to focus on implementing features and not libraries.
 
-## Links
 
-* [calincrist/aws_amplify_integration | GitHub](https://github.com/calincrist/aws_amplify_integration.git)
-* [Calin Cristian (@calin_crist) | Twitter](https://twitter.com/calin_crist)
-* [Calin - Cristian Ciubotariu - Freelance Software Developer | LinkedIn](http://www.linkedin.com/in/calincrist)
+- Github link
+    [calincrist/aws_amplify_integration](https://github.com/calincrist/aws_amplify_integration.git)
