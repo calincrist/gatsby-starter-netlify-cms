@@ -16,7 +16,7 @@ export const BlogPostTemplate = ({
   title,
   helmet,
 }) => {
-  const PostContent = /*contentComponent || */ Content
+  const PostContent = contentComponent || Content
 
   console.log({publishDate});
 
