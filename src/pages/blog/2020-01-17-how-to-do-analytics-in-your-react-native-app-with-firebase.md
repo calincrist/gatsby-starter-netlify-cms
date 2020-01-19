@@ -8,7 +8,11 @@ description: >-
   your creation and find it useful? You don't unless you find a way to get
   insights and understand how your apps are used.
 tags:
-  - react-native ios firebase analytics android
+  - react-native 
+  - ios 
+  - firebase 
+  - analytics 
+  - android
 ---
 
 ## Choices

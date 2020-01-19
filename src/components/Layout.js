@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from "gatsby"
+import SEO from "../components/SEO";
 
 import Navbar from '../components/Navbar'
 import './all.sass'
@@ -11,8 +12,24 @@ const TemplateWrapper = ({ children }) => (
       query HeadingQuery {
           site {
             siteMetadata {
-              title,
-              description,
+              title
+              description
+              author
+              siteUrl
+              siteVerification {
+                google
+                bing
+              }
+              social {
+                twitter
+              }
+              socialLinks {
+                twitter
+                linkedin
+                github
+                email
+              }
+              keywords
             }
           }
         }
@@ -33,8 +50,13 @@ const TemplateWrapper = ({ children }) => (
 
 	        <meta property="og:type" content="business.business" />
           <meta property="og:title" content={data.site.siteMetadata.title} />
+          <meta property="og:author" content={data.site.siteMetadata.author} />
+          <meta property="og:author" content={data.site.siteMetadata.author} />
+          <meta name="twitter:creator" content={data.site.siteMetadata.social.twitter} />
           <meta property="og:url" content="/" />
           <meta property="og:image" content="/img/og-image.jpg" />
+          
+          <SEO title={data.site.siteMetadata.title} /> 
         </Helmet>
         <Navbar />
         <div>{children}</div>
