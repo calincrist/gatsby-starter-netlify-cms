@@ -36,7 +36,6 @@ export const BlogPostTemplate = ({
             
             <p>{description}</p>
 
-
             <br />
             
             <PostContent className="blog-post-content" content={content} />
