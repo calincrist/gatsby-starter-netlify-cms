@@ -8,11 +8,15 @@ description: >-
   your creation and find it useful? You don't unless you find a way to get
   insights and understand how your apps are used.
 tags:
-  - react-native 
-  - ios 
-  - firebase 
-  - analytics 
+  - react-native
+  - ios
+  - firebase
+  - analytics
   - android
+featured_image:
+  alt: How To Do Analytics in Your React Native App with Firebase
+  src: /img/analytics-2156083_1280-4.png
+  title: How To Do Analytics in Your React Native App with Firebase
 ---
 
 ## Choices
