@@ -3,7 +3,8 @@ module.exports = {
     title: 'Calin\'s personal space on the internet',
     description: `My name is Calin-Cristian Ciubotariu and I am a software developer specialised in mobile technologies. I write code every day - so I started this blog to take notes for future references and improve myself by sharing knowledge.`,
     author: 'Calin Cristian Ciubotariu',
-    siteURL: 'www.calincrist.com',
+    siteURL: 'https://www.calincrist.com',
+    siteUrl: 'https://www.calincrist.com',
     keywords: `blog,react native,ios,android,freelancer,mobile,mobile app,app`,
     twitterAuthor: 'calin_crist',
     socialLinks: {
@@ -11,7 +12,9 @@ module.exports = {
       linkedin: 'http://linkedin.com/in/calincrist/',
       github: 'http://github.com/calincrist',
       email: 'calin.crist@gmail.com'
-    }
+    },
+    email: 'calin.crist@gmail.com',
+    name: 'Calin Cristian Ciubotariu',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -105,6 +108,77 @@ module.exports = {
             logLevel: 'error'       // Set to 'warn' to debug if something looks wrong
           }
         }]
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: [`/admin`],
+      }
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ "content:encoded": edge.node.html }],
+                })
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      fields { slug }
+                      frontmatter {
+                        title
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "CalinCrist blog | RSS Feed",
+          },
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: `UA-61211818-3`,
       },
     },
     'gatsby-plugin-netlify', // make sure to keep it last in the array
