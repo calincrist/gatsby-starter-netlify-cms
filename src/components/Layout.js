@@ -15,14 +15,12 @@ const TemplateWrapper = ({ children }) => (
               title
               description
               author
-              siteUrl
-              siteVerification {
-                google
-                bing
-              }
-              social {
-                twitter
-              }
+              siteURL
+              # siteVerification {
+              #   google
+              #   bing
+              # }
+              twitterAuthor
               socialLinks {
                 twitter
                 linkedin
@@ -48,11 +46,10 @@ const TemplateWrapper = ({ children }) => (
 	        <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#ff4400" />
 	        <meta name="theme-color" content="#fff" />
 
-	        <meta property="og:type" content="business.business" />
+	        <meta property="og:type" content="website" />
           <meta property="og:title" content={data.site.siteMetadata.title} />
           <meta property="og:author" content={data.site.siteMetadata.author} />
-          <meta property="og:author" content={data.site.siteMetadata.author} />
-          <meta name="twitter:creator" content={data.site.siteMetadata.social.twitter} />
+          <meta name="twitter:creator" content={data.site.siteMetadata.twitterAuthor} />
           <meta property="og:url" content="/" />
           <meta property="og:image" content="/img/og-image.jpg" />
           

@@ -2,6 +2,16 @@ module.exports = {
   siteMetadata: {
     title: 'Calin\'s personal space on the internet',
     description: 'Calin\'s personal space on the internet',
+    author: 'Calin Cristian Ciubotariu',
+    siteURL: 'www.calincrist.com',
+    keywords: `blog,react native,ios,android,freelancer,mobile,mobile app,app`,
+    twitterAuthor: 'calin_crist',
+    socialLinks: {
+      twitter: 'https://twitter.com/calin_crist',
+      linkedin: 'http://linkedin.com/in/calincrist/',
+      github: 'http://github.com/calincrist',
+      email: 'calin.crist@gmail.com'
+    }
   },
   plugins: [
     'gatsby-plugin-react-helmet',

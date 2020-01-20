@@ -12,7 +12,7 @@ function SEO({ description, meta, image: metaImage, title }) {
             siteMetadata {
               author
               description
-              siteUrl
+              siteURL
               keywords
             }
           }
@@ -23,7 +23,7 @@ function SEO({ description, meta, image: metaImage, title }) {
           description || data.site.siteMetadata.description;
         const image =
           metaImage && metaImage.src
-            ? `${data.site.siteMetadata.siteUrl}${metaImage.src}`
+            ? `${data.site.siteMetadata.siteURL}${metaImage.src}`
             : null;
         return (
           <Helmet
@@ -39,7 +39,7 @@ function SEO({ description, meta, image: metaImage, title }) {
                 },
                 {
                   name: "keywords",
-                  content: data.site.siteMetadata.keywords.join(",")
+                  content: data.site.siteMetadata.keywords
                 },
                 {
                   property: "og:title",
@@ -51,7 +51,7 @@ function SEO({ description, meta, image: metaImage, title }) {
                 },
                 {
                   name: "twitter:creator",
-                  content: data.site.siteMetadata.author
+                  content: data.site.siteMetadata.twitterAuthor
                 },
                 {
                   name: "twitter:title",
@@ -105,9 +105,9 @@ SEO.defaultProps = {
 SEO.propTypes = {
   description: PropTypes.string,
   image: PropTypes.shape({
-    src: PropTypes.string.isRequired(),
-    height: PropTypes.string.isRequired(),
-    width: PropTypes.string.isRequired()
+    // src: PropTypes.string.isRequired(),
+    // height: PropTypes.string.isRequired(),
+    // width: PropTypes.string.isRequired()
   }),
   meta: PropTypes.array,
   title: PropTypes.string.isRequired
