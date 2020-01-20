@@ -1,17 +1,14 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from "gatsby"
-import SEO from "../components/SEO";
+import SEO from "./SEO";
 
 import Navbar from '../components/Navbar'
 import './all.sass'
 
-import staticOGImage from '../../static/img/og-image.png'
-
 const TemplateWrapper = ({ children }) => {
 
-  console.log(staticOGImage);
-  const imageObj = { src: staticOGImage };
+  const imageObj = { src: '/img/og-image.png' };
 
   return (<StaticQuery
     query={graphql`
@@ -57,10 +54,10 @@ const TemplateWrapper = ({ children }) => {
           <meta property="og:title" content={data.site.siteMetadata.title} />
           <meta property="og:author" content={data.site.siteMetadata.author} />
           <meta name="twitter:creator" content={data.site.siteMetadata.twitterAuthor} />
-          <meta property="og:url" content="/" />
-          <meta property="og:image" content={staticOGImage} />
+          <meta property="og:url" content={data.site.siteMetadata.siteURL} />
+          <meta property="og:image" content={`${data.site.siteMetadata.siteURL}/img/og-image.png`} />
           
-          <SEO title={data.site.siteMetadata.title} /> 
+          <SEO title={data.site.siteMetadata.title} metaImage={imageObj} /> 
         </Helmet>
         <Navbar />
         <div>{children}</div>

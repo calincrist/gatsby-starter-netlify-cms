@@ -3,7 +3,10 @@ import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
 
-function SEO({ description, meta, image: metaImage, title }) {
+function SEO({ description, meta, metaImage, title }) {
+
+  // console.log({metaImage: metaImage});
+
   return (
     <StaticQuery
       query={graphql`
@@ -104,8 +107,8 @@ SEO.defaultProps = {
 
 SEO.propTypes = {
   description: PropTypes.string,
-  image: PropTypes.shape({
-    // src: PropTypes.string.isRequired(),
+  metaImage: PropTypes.shape({
+    src: PropTypes.string.isRequired,
     // height: PropTypes.string.isRequired(),
     // width: PropTypes.string.isRequired()
   }),
