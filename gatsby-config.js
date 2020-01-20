@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'Calin\'s personal space on the internet',
-    description: 'Calin\'s personal space on the internet',
+    description: `My name is Calin-Cristian Ciubotariu and I am a software developer specialised in mobile technologies. I write code every day - so I started this blog to take notes for future references and improve myself by sharing knowledge.`,
     author: 'Calin Cristian Ciubotariu',
     siteURL: 'www.calincrist.com',
     keywords: `blog,react native,ios,android,freelancer,mobile,mobile app,app`,

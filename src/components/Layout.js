@@ -6,8 +6,14 @@ import SEO from "../components/SEO";
 import Navbar from '../components/Navbar'
 import './all.sass'
 
-const TemplateWrapper = ({ children }) => (
-  <StaticQuery
+import staticOGImage from '../../static/img/og-image.png'
+
+const TemplateWrapper = ({ children }) => {
+
+  console.log(staticOGImage);
+  const imageObj = { src: staticOGImage };
+
+  return (<StaticQuery
     query={graphql`
       query HeadingQuery {
           site {
@@ -51,7 +57,7 @@ const TemplateWrapper = ({ children }) => (
           <meta property="og:author" content={data.site.siteMetadata.author} />
           <meta name="twitter:creator" content={data.site.siteMetadata.twitterAuthor} />
           <meta property="og:url" content="/" />
-          <meta property="og:image" content="/img/og-image.jpg" />
+          <meta property="og:image" content={staticOGImage} />
           
           <SEO title={data.site.siteMetadata.title} /> 
         </Helmet>
@@ -59,7 +65,7 @@ const TemplateWrapper = ({ children }) => (
         <div>{children}</div>
       </div>
     )}
-  />
-)
+  />);
+}
 
 export default TemplateWrapper
