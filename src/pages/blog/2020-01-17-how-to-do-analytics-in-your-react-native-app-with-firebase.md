@@ -7,6 +7,7 @@ description: >-
   get approved in their stores. How do you know if your customers are enjoying
   your creation and find it useful? You don't unless you find a way to get
   insights and understand how your apps are used.
+featured_image: img/analytics-2156083_1280-4.png
 tags:
   - react-native 
   - ios 
@@ -58,7 +59,7 @@ Now, we need to add different apps for different platforms. For iOS select the "
 
 Enter the native project's bundle ID (and App Store ID if you have one), give it a nickname and press "Register app".
 
-<img src="https://thepracticaldev.s3.amazonaws.com/i/3p16we3pl1yikgdz8u0i.png" alt="Register app" style="zoom:33%; width:50% height:90px" />
+<img src="https://thepracticaldev.s3.amazonaws.com/i/3p16we3pl1yikgdz8u0i.png" alt="Register app" style="zoom:33%; width:50%; height:90px" />
 
 <img src="https://thepracticaldev.s3.amazonaws.com/i/l6ajy1s7oippvnno8zuq.png" alt="Download config file" style="zoom: 30%; width: 50%;" />
 

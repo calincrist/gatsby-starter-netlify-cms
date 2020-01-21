@@ -9,6 +9,7 @@ description: >-
   dealing with this feature requires more work than we'd want. That's where AWS
   Amplify comes into play. It makes this experience workable for developers and
   risk-less for users.
+featured_image: img/ios-auth-awsamplify-cover.jpg
 tags:
   - aws
   - amplify
