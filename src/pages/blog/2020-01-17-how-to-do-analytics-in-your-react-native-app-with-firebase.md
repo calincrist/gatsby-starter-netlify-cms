@@ -13,10 +13,7 @@ tags:
   - firebase
   - analytics
   - android
-featured_image:
-  alt: How To Do Analytics in Your React Native App with Firebase
-  src: /img/analytics-2156083_1280-4.png
-  title: How To Do Analytics in Your React Native App with Firebase
+  - native ios
 ---
 
 ## Choices
