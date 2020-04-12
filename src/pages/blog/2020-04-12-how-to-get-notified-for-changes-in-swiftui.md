@@ -171,15 +171,27 @@ var body: some View {
 }
 ```
 
+<br>
+
+I have to say that I don't particularly like this method as it doesn't look clean to declare bindings and have implementation inside the rendering section. 
+
 <br><br>
 
-## Combine's `ObservableObject`
+## Combine framework
 
-`ObservableObject` is a type of object with a publisher that emits before the object has changed.
+The \`Combine\` framework is used to customise handling of asynchronous events by combining event-processing operators - in our case to listen to state changes events.
 
-ObservableObject and Published provide a general-purpose Combine publisher that you use when there isn't a more specific Combine publisher for your needs.
+In Combine's vocabulary we have:
 
-@ObservedObject declares dependency on a reference type that conforms to the ObservableObject protocol: It implements an objectWillChange property to publish changes to its data.
+\- `ObservableObject` - A type of object with a publisher that emits before the object has changed.
+
+\- `ObservedObject`  - declares dependency on a reference type that conforms to the ObservableObject protocol. It's a property wrapper type that subscribes to an observable object and invalidates a view whenever the observable object changes.
+
+What that means is that it will emit just before changes.
+
+\- `Published`  - A type that publishes a property marked with an attribute.
+
+This approach is forcing us (in a good way) to have a cleaner code by extracting the business logic out of the view.
 
 <br>
 
@@ -195,8 +207,6 @@ class ContentViewModel: ObservableObject {
     }
     @Published var textsMatch: Bool = false
 }
-
-
 ```
 
 <br>
