@@ -23,6 +23,10 @@ After some research (took longer than I expected), I learned 3 ways to do that:
 
 <br><br>
 
+Below I will describe a specific simple use-case: check if a text field value is matching a predefined word and show that by toggling a switch on/off (the control is called `Toggle`).
+
+<br><br>
+
 ## `onEditingChanged`
 
 According to Apple's Developer Documentation, this callback is available on the inits of 3 controls: `TextField`, `Slider` and `Stepper`.
