@@ -240,3 +240,9 @@ struct ContentView: View {
   
 }
 ```
+
+<br><br>
+
+I don't know about you, but I have to say that I much prefer the third option as I have more control over the data flow and the code is more maintainable. And I need that in the real-world use cases.
+
+<br><br>
