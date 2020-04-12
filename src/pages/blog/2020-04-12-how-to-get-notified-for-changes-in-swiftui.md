@@ -84,16 +84,48 @@ Stepper:
 init(_:onIncrement:onDecrement:onEditingChanged:)
 ```
 
+<br>
+
+
+
+What we can do here is enhancing the TextField's init with this param:
+
+```swift
+@State var textValue: String = "Hello"
+@State var enteredTextValue: String = ""
+@State var textsMatch: Bool = false    
+
+var body: some View {
+  VStack {
+      HStack {
+          Text("Write this word: ")
+          Text(textValue)
+      }
+
+      TextField("Write here:", 
+                text: $enteredTextValue,
+                onEditingChanged: { changed in
+          // UPDATE THE DESIRED @State VARIABLE
+          self.textsMatch = (self.textValue == self.enteredTextValue)
+      })
+      .padding(10)
+      .border(Color.green, width: 1)
+
+      Toggle(isOn: $textsMatch) {
+          Text("Matching?")
+      }
+      .disabled(true)
+      .padding()
+  }.padding()
+}
+```
+
+
+
 <br><br>
 
 ## Binding variables
 
-
-
 <br><br>
-
-
-
-
 
 ## Combine's `ObservableObject`
