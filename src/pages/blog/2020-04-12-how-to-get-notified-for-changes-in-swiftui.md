@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-title: How to get notified for changes in SwiftUI
+title: Three ways to react to event changes in SwiftUI
 date: 2020-04-12T15:06:04.644Z
 featured_image: /img/swiftui-96x96_2x.png
 description: How to implement an equivalent of "onChange" on SwiftUI controls.
