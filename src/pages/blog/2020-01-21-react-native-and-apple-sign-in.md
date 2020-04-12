@@ -82,6 +82,18 @@ Initialize an authentication session with your app server and associate a client
 
 ### Implementation
 
+Below is a skeleton and is meant to give you an idea of how is it to integrate "Sign in with Apple" library in your real-life use cases. There are a lot of assumptions and a lot of (unnecesary code) is removed for breivity reasons.
+
+The main idea is that "Sign in with Apple" should be treated as an *identity provider* and not as an *identity manager*.
+
+For example you cannot use the Apple JWT token to authenticate AND check for authentication because its' expiry date is very close (minutes) to the issue date. And in order to do a refresh request the user has to login again using Face ID/Touch ID -> Bad UX.
+
+<!--"Bleagh" image/meme-->
+
+So what would help is *something* to manage *access* tokens, *id* tokens and *refresh* tokens - and by manage I mean generate and refresh them. If you do not want to deal with these by yourself, there are alternatives like Firebase, Auth0 or AWS Cognito.
+
+
+
 Let's assume you have what I had when my task was to implement Apple Sign In:
 
 - Redux for the state management
@@ -92,6 +104,8 @@ Let's assume you have what I had when my task was to implement Apple Sign In:
 All of these are passed as props in the `AppleAuthentication` component.
 
 Truth to be told, it doesn't matter what state management *thing* you're using, as long as you have a way to store and update the auth data.
+
+
 
 ```javascript
 import React, { useEffect } from 'react';
@@ -105,7 +119,7 @@ import appleAuth, {
 } from '@invertase/react-native-apple-authentication';
 
 
-const AppleAuthentication = ({ user, userAuthState, updateUserAuthState }) => {
+const AppleAuthentication = ({ appleUser, user, userAuthState, updateUserAuthState }) => {
   
   //	Check if the device supports this feature.
   //	Devices pre-iOS 13 (and all Android devices) will not support this.
@@ -118,7 +132,7 @@ const AppleAuthentication = ({ user, userAuthState, updateUserAuthState }) => {
     //  useEffect will call this function when the component unmounts
     return appleAuth.onCredentialRevoked(async () => {
       console.log('Apple Credential Revoked');
-      checkCredentialState(updateUserAuthState);
+      checkCredentialState();
     });
   }, []); 
   // passing in an empty array as the second argument ensures 
@@ -126,8 +140,8 @@ const AppleAuthentication = ({ user, userAuthState, updateUserAuthState }) => {
   
 
   useEffect(() => {
-    checkCredentialState(updateUserAuthState);
-  }, [user]);
+    checkCredentialState();
+  }, [appleUser]);
   // passing in array with the user object as the second argument ensures 
   // this is called when component mounts initially and 
   // the `user` object is updated.
@@ -141,9 +155,13 @@ const AppleAuthentication = ({ user, userAuthState, updateUserAuthState }) => {
     // ...
   };
   
+  if (updateUserAuthState === 'AUTHORIZED') {
+    return (<Text>Authenticated - Authorized.</Text>);
+  }
+  
   return (
       <AppleButton
-        style={{ /* Your custom button container styles*/ }}
+        style={{ /* Your custom button container styles */ }}
         buttonStyle={AppleButton.Style.BLACK}
         buttonType={AppleButton.Type.CONTINUE}
         onPress={appleSignInAction}
@@ -163,7 +181,8 @@ AppleAuthentication.defaultProps = {
 }
 
 const mapStateToProps = state => ({
-  user: state.user, 
+  user: state.user,
+  appleUser: state.appleUser,
   userAuthState: state.userAuthState, 
 });
 
@@ -178,18 +197,29 @@ export default connect(mapStateToProps, mapDispatchToProps)(AppleAuthentication)
 
 
 
+- `user` 
+  -  is the user object from the identity manager service
+- `appleUser` 
+  - is the user object retrieved from apple identity provider
+  - use it with the `appleAuth` module from `react-native-apple-authentication`
+- `userAuthState` 
+  - is the authentication state of the user
+  - it can be *AUTHORIZED*, *NOT_FOUND*, *REVOKED* or *TRANSFERRED*
+
+
+
 ```javascript
 /**
  * Fetches the credential state for the current user, if any, and updates state on completion.
  */
 const checkCredentialState = async () => {
   
-  if (!user) {
+  if (!appleUser) {
     updateUserAuthState(null);
   }
 
   try {
-      const credentialState = await appleAuth.getCredentialStateForUser(user);
+      const credentialState = await appleAuth.getCredentialStateForUser(appleUser);
       if (credentialState === AppleAuthCredentialState.AUTHORIZED) {
         updateUserAuthState('AUTHORIZED');
       } else {
@@ -200,6 +230,10 @@ const checkCredentialState = async () => {
   }
 }	
 ```
+
+
+
+
 
 
 
@@ -238,8 +272,10 @@ const appleSignInAction = async () => {
         // `appleAuthRequestResponse.fullName` will return null for subsequent sign in requests.
 
         //	Use the `identityToken` and `nonce` to get the user details or 
-        //  create the user on your own backend/identity manager (e.g. Firebase, AWS Amplify)
+        //  create the user on your own backend/identity manager (e.g. Firebase, Auth0, AWS Amplify)
 
+        //	Create/Update the `appleUser` object in the local Redux store using `appleAuthRequestResponse.user`
+        
         //	Create/Update the `user` object in the local Redux store.
         
       } else {
