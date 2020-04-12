@@ -13,7 +13,7 @@ tags:
 ---
 After almost a year since **SwiftUI** was released, I decided to give it a go. I started to get my hands dirty by implementing basic UI controls (like Slider or TextField) and how to manipulate view states.
 
-In short time, I faced the challenge to update a `@State`variable based on another `@State` variable changes. 
+In short time, I faced the challenge to update a `@State` variable based on another `@State` variable changes. 
 
 After some research (took longer than I expected), I learned 3 ways to do that:
 
