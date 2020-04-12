@@ -25,6 +25,47 @@ After some research (took longer than I expected), I learned 3 ways to do that:
 
 Below I will describe a specific simple use-case: check if a text field value is matching a predefined word and show that by toggling a switch on/off (the control is called `Toggle`).
 
+![Matching text gif](/img/textSync.gif "Matching text gif")
+
+The UI skeleton code:
+
+```swift
+struct ContentView: View {
+    
+    @State var textValue: String = "Hello"
+    @State var enteredTextValue: String = ""
+    @State var textsMatch: Bool = false
+    
+    var body: some View {
+          VStack {
+              HStack {
+                  Text("Write this word: ")
+                  Text(textValue)
+              }
+
+              TextField("Write here:", text: $enteredTextValue)
+                  .padding(10)
+                  .border(Color.green, width: 1)
+
+              Toggle(isOn: $textsMatch) {
+                  Text("Matching?")
+              }
+              .disabled(true)
+              .padding()
+        }.padding()
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+```
+
+
+
 <br><br>
 
 ## `onEditingChanged`
@@ -45,11 +86,6 @@ init(value:in:onEditingChanged:)
 Stepper:
 init(_:onIncrement:onDecrement:onEditingChanged:)
 ```
-
-
-
-
-
 
 ## Binding variables
 
