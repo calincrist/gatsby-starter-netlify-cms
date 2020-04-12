@@ -86,14 +86,17 @@ init(_:onIncrement:onDecrement:onEditingChanged:)
 
 <br>
 
-
-
 What we can do here is enhancing the TextField's init with this param:
 
 ```swift
 @State var textValue: String = "Hello"
 @State var enteredTextValue: String = ""
 @State var textsMatch: Bool = false    
+
+//  ADD THIS
+func checkIfTextsMatch(changed: Bool) {
+    self.textsMatch = self.textValue == self.enteredTextValue
+}
 
 var body: some View {
   VStack {
@@ -104,10 +107,8 @@ var body: some View {
 
       TextField("Write here:", 
                 text: $enteredTextValue,
-                onEditingChanged: { changed in
-          // UPDATE THE DESIRED @State VARIABLE
-          self.textsMatch = (self.textValue == self.enteredTextValue)
-      })
+                //  USE HERE
+                onEditingChanged: self.checkIfTextsMatch)
       .padding(10)
       .border(Color.green, width: 1)
 
@@ -116,11 +117,12 @@ var body: some View {
       }
       .disabled(true)
       .padding()
+
   }.padding()
 }
 ```
 
-
+A possible downside to this approach is that `onEditingChanged` gets called after the user presses the `return` key of the keyboard. But if you don't want this to happen in "real-time" it's a viable solution.
 
 <br><br>
 
