@@ -2,7 +2,7 @@
 templateKey: blog-post
 title: Three ways to react to @State event changes in SwiftUI
 date: 2020-04-12T15:06:04.644Z
-featured_image: /img/swiftui-96x96_2x.png
+featured_image: /img/onchange-swiftui-headerimage.png
 description: How to implement an equivalent of "onChange" on SwiftUI controls.
 tags:
   - swiftui
