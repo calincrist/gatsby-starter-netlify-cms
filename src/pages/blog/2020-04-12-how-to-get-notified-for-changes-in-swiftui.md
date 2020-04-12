@@ -171,8 +171,6 @@ var body: some View {
 }
 ```
 
-
-
 <br><br>
 
 ## Combine's `ObservableObject`
@@ -182,3 +180,43 @@ var body: some View {
 ObservableObject and Published provide a general-purpose Combine publisher that you use when there isn't a more specific Combine publisher for your needs.
 
 @ObservedObject declares dependency on a reference type that conforms to the ObservableObject protocol: It implements an objectWillChange property to publish changes to its data.
+
+<br>
+
+```swift
+class ContentViewModel: ObservableObject {
+    @Published var textValue: String = "Hello"
+    @Published var enteredTextValue: String = "" {
+        didSet {
+            textsMatch = (enteredTextValue == textValue)
+        }
+    }
+    @Published var textsMatch: Bool = false
+}
+
+struct ContentView: View {
+  
+  @ObservedObject var viewModel = ContentViewModel()
+  
+  var body: some View {
+      VStack {
+          HStack {
+              Text("Write this word: ")
+              Text(String(viewModel.textValue))
+          }
+
+          TextField("Write here:", text: $viewModel.enteredTextValue)
+              .padding(10)
+              .border(Color.green, width: 1)
+          Text(viewModel.enteredTextValue)
+
+          Toggle(isOn: $viewModel.textsMatch) {
+              Text("Matching?")
+          }
+          .disabled(true)
+          .padding()
+      }.padding()
+  }
+  
+}
+```
