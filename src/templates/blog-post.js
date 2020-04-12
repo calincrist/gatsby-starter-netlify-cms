@@ -74,6 +74,8 @@ const BlogPost = ({ data }) => {
   const { markdownRemark: post, site } = data
 
   console.log(site.siteMetadata.siteUrl)
+  console.log(post.frontmatter.featured_image)
+  console.log(`${site.siteMetadata.siteUrl}/${post.frontmatter.featured_image}`)
 
   return (
     <Layout>
