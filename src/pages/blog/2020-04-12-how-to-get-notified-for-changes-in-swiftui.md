@@ -61,10 +61,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
 ```
-
-
 
 <br><br>
 
@@ -87,6 +84,16 @@ Stepper:
 init(_:onIncrement:onDecrement:onEditingChanged:)
 ```
 
+<br><br>
+
 ## Binding variables
+
+
+
+<br><br>
+
+
+
+
 
 ## Combine's `ObservableObject`
