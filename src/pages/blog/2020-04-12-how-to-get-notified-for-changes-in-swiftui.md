@@ -29,7 +29,7 @@ After some research (took longer than I expected), I learned 3 ways to do that:
 
 1. UI Controls specific callbacks: `onEditingChanged`
 2. Binding variables
-3. Making use of `Combine` framework `ObservableObject`
+3. Making use of `Combine` framework
 
 <br>
 
