@@ -21,7 +21,7 @@ After some research (took longer than I expected), I learned 3 ways to do that:
 2. Binding variables
 3. Making use of `Combine` framework `ObservableObject`
 
-<br><br>
+<br>
 
 Below I will describe a specific simple use-case: check if a text field value is matching a predefined word and show that by toggling a switch on/off (the control is called `Toggle`).
 
@@ -63,9 +63,9 @@ struct ContentView_Previews: PreviewProvider {
 }
 ```
 
-<br><br>
+<br>
 
-## `onEditingChanged`
+## onEditingChanged
 
 According to Apple's Developer Documentation, this callback is available on the inits of 3 controls: `TextField`, `Slider` and `Stepper`.
 
@@ -126,7 +126,7 @@ A possible downside to this approach is that `onEditingChanged` gets called afte
 
 But if you don't want this to happen in "real-time" it's a viable solution.
 
-<br><br>
+<br>
 
 ## Binding variables
 
@@ -175,7 +175,7 @@ var body: some View {
 
 I have to say that I don't particularly like this method as it doesn't look clean to declare bindings and have implementation inside the rendering section. 
 
-<br><br>
+<br>
 
 ## Combine framework
 
@@ -241,7 +241,7 @@ struct ContentView: View {
 }
 ```
 
-<br><br>
+<br>
 
 I don't know about you, but I have to say that I much prefer the third option as I have more control over the data flow and the code is more maintainable. And I need that in the real-world use cases.
 
