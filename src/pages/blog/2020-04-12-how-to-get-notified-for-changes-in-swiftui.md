@@ -183,6 +183,8 @@ ObservableObject and Published provide a general-purpose Combine publisher that 
 
 <br>
 
+Create the view model:
+
 ```swift
 class ContentViewModel: ObservableObject {
     @Published var textValue: String = "Hello"
@@ -194,6 +196,14 @@ class ContentViewModel: ObservableObject {
     @Published var textsMatch: Bool = false
 }
 
+
+```
+
+<br>
+
+Use it in the desired view:
+
+```swift
 struct ContentView: View {
   
   @ObservedObject var viewModel = ContentViewModel()
