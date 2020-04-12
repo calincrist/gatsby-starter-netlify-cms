@@ -122,12 +122,63 @@ var body: some View {
 }
 ```
 
-A possible downside to this approach is that `onEditingChanged` gets called after the user presses the `return` key of the keyboard. But if you don't want this to happen in "real-time" it's a viable solution.
+A possible downside to this approach is that `onEditingChanged` gets called after the user presses the `return` key of the keyboard. 
+
+But if you don't want this to happen in "real-time" it's a viable solution.
 
 <br><br>
 
 ## Binding variables
 
+`Binding` is a property wrapper type that can read and write a value owned by a source of truth.
+
+This reference enables the view to edit the state of any view that depends on this data.
+
+We can use this to mimic the property observers from UIKit approach (getters/setters).
+
+<br>
+
+```swift
+func checkIfTextsMatch() {
+    self.textsMatch = self.textValue == self.enteredTextValue
+}
+
+var body: some View {
+  let textValueBinding = Binding<String>(get: {
+      self.enteredTextValue
+  }, set: {
+      self.enteredTextValue = $0
+      self.checkIfTextsMatch()
+  })
+
+  return VStack {
+      HStack {
+          Text("Write this word: ")
+          Text(String(textValue))
+      }
+
+      TextField("Write here:", text: textValueBinding)
+          .padding(10)
+          .border(Color.green, width: 1)
+      Text(enteredTextValue)
+
+      Toggle(isOn: $textsMatch) {
+          Text("Matching?")
+      }
+      .disabled(true)
+      .padding()
+  }.padding()
+}
+```
+
+
+
 <br><br>
 
 ## Combine's `ObservableObject`
+
+`ObservableObject` is a type of object with a publisher that emits before the object has changed.
+
+ObservableObject and Published provide a general-purpose Combine publisher that you use when there isn't a more specific Combine publisher for your needs.
+
+@ObservedObject declares dependency on a reference type that conforms to the ObservableObject protocol: It implements an objectWillChange property to publish changes to its data.
