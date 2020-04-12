@@ -9,11 +9,12 @@ description: >-
   insights and understand how your apps are used.
 featured_image: img/analytics-2156083_1280-4.png
 tags:
-  - react-native 
-  - ios 
-  - firebase 
-  - analytics 
+  - react-native
+  - ios
+  - firebase
+  - analytics
   - android
+  - native ios
 ---
 
 ## Choices
