@@ -73,6 +73,8 @@ BlogPostTemplate.propTypes = {
 const BlogPost = ({ data }) => {
   const { markdownRemark: post, site } = data
 
+  console.log(site.siteMetadata.siteUrl)
+
   return (
     <Layout>
       <SEO 
