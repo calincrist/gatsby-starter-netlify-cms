@@ -17,6 +17,14 @@ After almost a year since **SwiftUI** was released, I decided to give it a go. I
 
 In short time, I faced the challenge to update a `@State` variable based on another `@State` variable changes. 
 
+<br>
+
+And yes, the property observers that we know (like `didSet` or `willSet`) don't work in @State variables.
+
+![disappointed](/img/D9b0wcKW4AMxXpn.jpg "Disappointed")
+
+<br>
+
 After some research (took longer than I expected), I learned 3 ways to do that:
 
 1. UI Controls specific callbacks: `onEditingChanged`
