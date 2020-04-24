@@ -75,28 +75,29 @@ const BlogPost = ({ data }) => {
 
   console.log(site.siteMetadata.siteUrl)
   console.log(post.frontmatter.featured_image)
-  console.log(`${site.siteMetadata.siteUrl}/${post.frontmatter.featured_image}`)
+
+  const imageURL = `${site.siteMetadata.siteUrl}/${post.frontmatter.featured_image}`.replace('static/', '')
 
   return (
     <Layout>
       <SEO 
         title={post.frontmatter.title} 
         description={post.frontmatter.description} 
-        image={`${site.siteMetadata.siteUrl}/${post.frontmatter.featured_image}`}/>
+        image={imageURL}/>
 
       <BlogPostTemplate
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
         publishDate={post.frontmatter.date}
-        featured_image={`${site.siteMetadata.siteUrl}/${post.frontmatter.featured_image}`}
+        featured_image={imageURL}
         helmet={
           <Helmet
             titleTemplate="%s | Blog"
           >
             <title>{`${post.frontmatter.title}`}</title>
             <meta name="description" content={`${post.frontmatter.description}`} />
-            <meta property="og:image" content={`${site.siteMetadata.siteUrl}/${post.frontmatter.featured_image}`} />
+            <meta property="og:image" content={imageURL} />
           </Helmet>
         }
         tags={post.frontmatter.tags}
