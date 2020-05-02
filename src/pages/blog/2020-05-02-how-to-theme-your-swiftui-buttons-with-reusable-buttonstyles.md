@@ -28,11 +28,9 @@ In SwiftUI I discovered that we don't have to rebuild the existing UI components
 
 A *view modifier* is a method of the View instance. It does three things:
 
-- takes the view (or another modifier)
-
-- it makes a copy of the view
-
-- it returns the modified view after applying some changes on its styles. 
+* takes the view (or another modifier)
+* it makes a copy of the view
+* it returns the modified view after applying some changes on its styles. 
 
 If you already tried constructing UI using SwiftUI, there's 99% chances that you've used a view modifier. There are built-in modifiers that help you shaping the screen you're working on.
 
@@ -47,20 +45,13 @@ Text("Cool headline")
     .font(.headline)
 		.foregroundColor(.purple)
 		.padding()
-
 ```
 
 <!-- Add screenshot with the result -->
 
-
-
-
-
 ## Quick note: Ordering modifiers
 
 <!-- Where to put this? -->
-
-
 
 That's all great! 
 
@@ -105,19 +96,20 @@ extension View {
 
 Explanations:
 
-- create a `struct` that implements the `ViewModifier` protocol
-- implement the `func body(content: Content)` function
-  - apply all the modifiers you need
-  - what it does is it's taking the view (content) and returns it with the applied modifiers
-- because we're applying this custom modifier to a View, we can add an extension to it
-  - name the function whatever you want
-  - make sure it returns `some View`
-  - `ModifiedContent` represents a value with a view modifier applied to it
-    - specify the content and the custom modifier to apply
+* create a `struct` that implements the `ViewModifier` protocol
+* implement the `func body(content: Content)` function
+
+  * apply all the modifiers you need
+  * what it does is it's taking the view (content) and returns it with the applied modifiers
+* because we're applying this custom modifier to a View, we can add an extension to it
+
+  * name the function whatever you want
+  * make sure it returns `some View`
+  * `ModifiedContent` represents a value with a view modifier applied to it
+
+    * specify the content and the custom modifier to apply
 
 Now, writing `Text("Cool headline").purpleHeadline()` will make sense.
-
-
 
 # Modifiers with parameters
 
@@ -162,10 +154,7 @@ extension View {
         )
     }
 }
-
 ```
-
-
 
 At the end of the day, the view modifier is just a `struct`, so we can make use of stored properties.  In this example we're using the `borderRadius` and `borderWidth` to customize the overlay.
 
@@ -179,62 +168,10 @@ Text(subtitleText)
 
 <!-- Add screenshot -->
 
-
-
-
-
 Below is another blog post, related to the one above:
 
+# Conclusion / Where to go from here?
 
+# Useful links
 
-# 8. Conclusion / Where to go from here?
-
-
-
-# 9. Useful links
-
-
-
-# 10. Call-to-action
-
-
-
-
-
-# 4. SwiftUI buttons
-
-
-
-### Short backstory
-
-- RN & NativeBase approach
-
-
-
-- Modifiers bundled with the View protocol, available to any view.
-- Modifiers specific to a type, available only to instances of that type.
-
-# 5. ButtonStyle view modifier
-
-
-
-# 6. Build your own ButtonStyle modifier
-
-
-
-# 7. Theme the buttons
-
-
-
-# 8. Conclusion / Where to go from here?
-
-
-
-# 9. Useful links
-
-
-
-# 10. Call-to-action
-
-
-
+# Call-to-action
