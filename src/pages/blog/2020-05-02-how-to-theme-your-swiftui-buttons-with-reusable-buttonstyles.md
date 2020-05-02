@@ -3,17 +3,15 @@ templateKey: blog-post
 title: How to theme your SwiftUI app with reusable view modifiers
 date: 2020-05-02T07:34:53.476Z
 featured_image: /img/Screenshot 2020-05-02 at 13.47.06.png
-description: How to theme your SwiftUI buttons with reusable buttonstyles
+description: >-
+  Maintaining your app's UI consistency while keeping your codebase clean is a
+  must-have(?). But how can we achieve that in SwiftUI?
 tags:
   - ios
   - swiftui
   - swift
   - theme
 ---
-# Subtitle
-
-Maintaining your app's UI consistency while keeping your codebase clean is a must-have(?). But how can we achieve that in SwiftUI?
-
 # Introduction & motivation
 
 Developing a pet/serious project is the perfect way to learn a new framework or paradigm. SwiftUI is no exception to this truth.
