@@ -268,6 +268,12 @@ You shouldn't refrain from using as many modifiers as you need. There are plenty
 
 For the most time you won't remember modifiers and their signature. That's why you should use the documentation. Always use Apple Docs, so I'll write again: in Xcode, **Option-click** on any view in the source editor, and then click **Open in Developer Documentation**.
 
-# Useful links
+
+
+In the next blog post I'll discuss about applying view modifiers on buttons and how can we start having a mini-ui-library suited for a SwiftUI project. Stay close!
 
 # Call-to-action
+
+If you enjoy what I write, please follow my activity wherever you prefer: [Dev.to](https://dev.to/calin_crist), [Medium](https://medium.com/@calin_crist) or on my very own gatsby powered blog [calincrist.com](https://www.calincrist.com).
+
+If you want to have a chat or simply see what I'm up to, follow me on [Twitter](https://twitter.com/calin_crist).
