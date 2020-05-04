@@ -5,7 +5,7 @@ date: 2020-05-02T07:34:53.476Z
 featured_image: /img/custom_view_modifiers.png
 description: >-
   Maintaining your app's UI consistency while keeping your codebase clean is a
-  must-have(?). But how can we achieve that in SwiftUI?
+  must-have. But how can we achieve that in SwiftUI?
 tags:
   - ios
   - swiftui
