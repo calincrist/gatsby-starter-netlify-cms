@@ -2,7 +2,7 @@
 templateKey: blog-post
 title: How to theme your SwiftUI app with reusable view modifiers
 date: 2020-05-02T07:34:53.476Z
-featured_image: /img/Screenshot 2020-05-02 at 13.47.06.png
+featured_image: /img/screenshot_1.png
 description: >-
   Maintaining your app's UI consistency while keeping your codebase clean is a
   must-have(?). But how can we achieve that in SwiftUI?
@@ -73,8 +73,6 @@ Text("Cool headline")
 
 have the same outcome (illustrated in the last image). "Use headline font and make it purple" = "Make it purple and use headline font"
 
-
-
 But if you want to add a background color that's a different story.
 
 Below you add an orange background and then some padding.
@@ -89,8 +87,6 @@ Text("Cool headline")
 
 <!-- Add screenshot -->
 
-
-
 Here you add padding and then an orange background.
 
 ```swift
@@ -102,8 +98,6 @@ Text("Cool headline")
 ```
 
 <!-- Add screenshot -->
-
-
 
 Explanation time:
 
@@ -121,8 +115,6 @@ Without parameters, SwiftUI adds a default padding in all four directions, but y
 Text("Cool headline")
 		.padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5))
 ```
-
-
 
 On the first example, first the background color is applied and then the spacing.
 
@@ -143,9 +135,7 @@ Text("Cool headline")
 
 The padding adds some space between the text and the edges of the view. The red background color is applied to the view that contains just the text and nothing more. The padding modifier results in a new view and the orange background is applied to it.
 
-[^Quick tip]: you can use this approach to visually debug more complex previews (for example to check:  paddings, borders, positioning, etc).
-
-
+\[^Quick tip]: you can use this approach to visually debug more complex previews (for example to check:  paddings, borders, positioning, etc).
 
 # Custom view modifiers
 
@@ -267,8 +257,6 @@ Text(subtitleText)
 You shouldn't refrain from using as many modifiers as you need. There are plenty of options like size, weight, overlay, cornerRadius that you can use to modify how your UI controls look on the screen.
 
 For the most time you won't remember modifiers and their signature. That's why you should use the documentation. Always use Apple Docs, so I'll write again: in Xcode, **Option-click** on any view in the source editor, and then click **Open in Developer Documentation**.
-
-
 
 In the next blog post I'll discuss about applying view modifiers on buttons and how can we start having a mini-ui-library suited for a SwiftUI project. Stay close!
 
