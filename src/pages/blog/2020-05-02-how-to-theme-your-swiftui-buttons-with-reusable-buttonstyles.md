@@ -41,8 +41,8 @@ The simplest example would be applying paddings or fonts to a `Text` view:
 ```swift
 Text("Cool headline")
     .font(.headline)
-		.foregroundColor(.purple)
-		.padding()
+    .foregroundColor(.purple)
+    .padding()
 ```
 
 <!-- Add screenshot with the result -->
@@ -58,17 +58,17 @@ In our example,
 ```swift
 Text("Cool headline")
     .font(.headline)          // <--
-		.foregroundColor(.purple) // <--
-		.padding()
+    .foregroundColor(.purple) // <--
+    .padding()
 ```
 
 and
 
 ```swift
 Text("Cool headline")
-		.foregroundColor(.purple) // <--
+    .foregroundColor(.purple) // <--
     .font(.headline)          // <--
-		.padding()
+    .padding()
 ```
 
 have the same outcome (illustrated in the last image). "Use headline font and make it purple" = "Make it purple and use headline font"
@@ -79,10 +79,10 @@ Below you add an orange background and then some padding.
 
 ```swift
 Text("Cool headline")
-		.foregroundColor(.purple)
+    .foregroundColor(.purple)
     .font(.headline)
     .background(Color.orange) // <--
-		.padding()                // <--
+    .padding()                // <--
 ```
 
 <!-- Add screenshot -->
@@ -91,10 +91,10 @@ Here you add padding and then an orange background.
 
 ```swift
 Text("Cool headline")
-		.foregroundColor(.purple)
+    .foregroundColor(.purple)
     .font(.headline)
-		.padding()                // <--
-		.background(Color.orange) // <--
+    .padding()                // <--
+    .background(Color.orange) // <--
 ```
 
 <!-- Add screenshot -->
@@ -113,7 +113,7 @@ Without parameters, SwiftUI adds a default padding in all four directions, but y
 
 ```swift
 Text("Cool headline")
-		.padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5))
+    .padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5))
 ```
 
 On the first example, first the background color is applied and then the spacing.
@@ -124,11 +124,11 @@ To illustrate things better try adding background colors before and after paddin
 
 ```swift
 Text("Cool headline")
-		.foregroundColor(.purple)
+    .foregroundColor(.purple)
     .font(.headline)
     .background(Color.red) // <--
-		.padding()
-		.background(Color.orange) // <--
+    .padding()
+    .background(Color.orange) // <--
 ```
 
 <!-- Add screenshot -->
@@ -147,9 +147,9 @@ But what if you have several purple headlines throughout the app? Telling texts:
 
 You might be saying "I'd like to be able to write something like":
 
-```
+```swift
 Text("Cool headline")
-		.purpleHeadline()
+    .purpleHeadline()
 ```
 
 Fortunately, we can create our own modifiers on top of the built-in ones. And we can name them accordingly.
@@ -247,7 +247,7 @@ Usage:
 ```swift
 Text(subtitleText)
     .purpleHeadline()
-		.bordered(borderWidth: 3, borderRadius: 5)
+    .bordered(borderWidth: 3, borderRadius: 5)
 ```
 
 <!-- Add screenshot -->
