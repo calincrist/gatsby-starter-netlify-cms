@@ -2,10 +2,10 @@
 templateKey: blog-post
 title: How to theme your SwiftUI app with reusable view modifiers
 date: 2020-05-02T07:34:53.476Z
-featured_image: /img/Screenshot 2020-05-02 at 13.47.06.png
+featured_image: /img/custom_view_modifiers.png
 description: >-
   Maintaining your app's UI consistency while keeping your codebase clean is a
-  must-have(?). But how can we achieve that in SwiftUI?
+  must-have. But how can we achieve that in SwiftUI?
 tags:
   - ios
   - swiftui
@@ -41,8 +41,8 @@ The simplest example would be applying paddings or fonts to a `Text` view:
 ```swift
 Text("Cool headline")
     .font(.headline)
-		.foregroundColor(.purple)
-		.padding()
+    .foregroundColor(.purple)
+    .padding()
 ```
 
 <!-- Add screenshot with the result -->
@@ -58,22 +58,20 @@ In our example,
 ```swift
 Text("Cool headline")
     .font(.headline)          // <--
-		.foregroundColor(.purple) // <--
-		.padding()
+    .foregroundColor(.purple) // <--
+    .padding()
 ```
 
 and
 
 ```swift
 Text("Cool headline")
-		.foregroundColor(.purple) // <--
+    .foregroundColor(.purple) // <--
     .font(.headline)          // <--
-		.padding()
+    .padding()
 ```
 
 have the same outcome (illustrated in the last image). "Use headline font and make it purple" = "Make it purple and use headline font"
-
-
 
 But if you want to add a background color that's a different story.
 
@@ -81,29 +79,25 @@ Below you add an orange background and then some padding.
 
 ```swift
 Text("Cool headline")
-		.foregroundColor(.purple)
+    .foregroundColor(.purple)
     .font(.headline)
     .background(Color.orange) // <--
-		.padding()                // <--
+    .padding()                // <--
 ```
 
 <!-- Add screenshot -->
-
-
 
 Here you add padding and then an orange background.
 
 ```swift
 Text("Cool headline")
-		.foregroundColor(.purple)
+    .foregroundColor(.purple)
     .font(.headline)
-		.padding()                // <--
-		.background(Color.orange) // <--
+    .padding()                // <--
+    .background(Color.orange) // <--
 ```
 
 <!-- Add screenshot -->
-
-
 
 Explanation time:
 
@@ -119,10 +113,8 @@ Without parameters, SwiftUI adds a default padding in all four directions, but y
 
 ```swift
 Text("Cool headline")
-		.padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5))
+    .padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5))
 ```
-
-
 
 On the first example, first the background color is applied and then the spacing.
 
@@ -132,20 +124,18 @@ To illustrate things better try adding background colors before and after paddin
 
 ```swift
 Text("Cool headline")
-		.foregroundColor(.purple)
+    .foregroundColor(.purple)
     .font(.headline)
     .background(Color.red) // <--
-		.padding()
-		.background(Color.orange) // <--
+    .padding()
+    .background(Color.orange) // <--
 ```
 
 <!-- Add screenshot -->
 
 The padding adds some space between the text and the edges of the view. The red background color is applied to the view that contains just the text and nothing more. The padding modifier results in a new view and the orange background is applied to it.
 
-[^Quick tip]: you can use this approach to visually debug more complex previews (for example to check:  paddings, borders, positioning, etc).
-
-
+\[^Quick tip]: you can use this approach to visually debug more complex previews (for example to check:  paddings, borders, positioning, etc).
 
 # Custom view modifiers
 
@@ -157,9 +147,9 @@ But what if you have several purple headlines throughout the app? Telling texts:
 
 You might be saying "I'd like to be able to write something like":
 
-```
+```swift
 Text("Cool headline")
-		.purpleHeadline()
+    .purpleHeadline()
 ```
 
 Fortunately, we can create our own modifiers on top of the built-in ones. And we can name them accordingly.
@@ -257,7 +247,7 @@ Usage:
 ```swift
 Text(subtitleText)
     .purpleHeadline()
-		.bordered(borderWidth: 3, borderRadius: 5)
+    .bordered(borderWidth: 3, borderRadius: 5)
 ```
 
 <!-- Add screenshot -->
@@ -267,8 +257,6 @@ Text(subtitleText)
 You shouldn't refrain from using as many modifiers as you need. There are plenty of options like size, weight, overlay, cornerRadius that you can use to modify how your UI controls look on the screen.
 
 For the most time you won't remember modifiers and their signature. That's why you should use the documentation. Always use Apple Docs, so I'll write again: in Xcode, **Option-click** on any view in the source editor, and then click **Open in Developer Documentation**.
-
-
 
 In the next blog post I'll discuss about applying view modifiers on buttons and how can we start having a mini-ui-library suited for a SwiftUI project. Stay close!
 
