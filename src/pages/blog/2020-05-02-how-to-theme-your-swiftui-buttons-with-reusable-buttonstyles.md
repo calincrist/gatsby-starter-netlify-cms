@@ -135,15 +135,13 @@ The padding adds some space between the text and the edges of the view. The red 
 
 \[^Quick tip]: you can use this approach to visually debug more complex previews (for example to check:  paddings, borders, positioning, etc).
 
-
-
 # Custom view modifiers
 
 That's all great! 
 
 But what if you have several purple headlines throughout the app? Telling texts: "be a purple headline with paddings" every time isn't a pretty solution, is it?
 
-<!--Add meme (yes, you're right/ok, now what)-->
+![now what?](/img/3sukmt.jpg "now what?")
 
 You might be saying "I'd like to be able to write something like":
 
