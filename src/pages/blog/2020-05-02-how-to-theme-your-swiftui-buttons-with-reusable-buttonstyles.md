@@ -20,7 +20,7 @@ While doing that, I stumbled upon having to use the same components on several s
 
 In SwiftUI we can use the existing UI components (e.g. `Text, TextField, Button`) with our own shared styles through **view modifiers** .
 
-<!--Add image-->
+
 
 # What are view modifiers?
 
@@ -45,7 +45,9 @@ Text("Cool headline")
     .padding()
 ```
 
-<!-- Add screenshot with the result -->
+![Cool headline result](/img/Screenshot 2020-05-06 at 23.30.18.png "Cool headline result")
+
+
 
 # Ordering modifiers
 
@@ -85,7 +87,7 @@ Text("Cool headline")
     .padding()                // <--
 ```
 
-<!-- Add screenshot -->
+![Ordering modifiers - result 1](/img/Screenshot 2020-05-06 at 23.32.39.png "Ordering modifiers - result 1")
 
 Here you add padding and then an orange background.
 
@@ -97,7 +99,7 @@ Text("Cool headline")
     .background(Color.orange) // <--
 ```
 
-<!-- Add screenshot -->
+![Ordering modifiers - result 2](/img/Screenshot 2020-05-06 at 23.32.55.png "Ordering modifiers - result 2")
 
 Explanation time:
 
