@@ -20,8 +20,6 @@ While doing that, I stumbled upon having to use the same components on several s
 
 In SwiftUI we can use the existing UI components (e.g. `Text, TextField, Button`) with our own shared styles through **view modifiers** .
 
-
-
 # What are view modifiers?
 
 A *view modifier* is a method of the View instance. What it does is:
@@ -46,8 +44,6 @@ Text("Cool headline")
 ```
 
 ![Cool headline result](/img/Screenshot 2020-05-06 at 23.30.18.png "Cool headline result")
-
-
 
 # Ordering modifiers
 
@@ -133,11 +129,13 @@ Text("Cool headline")
     .background(Color.orange) // <--
 ```
 
-<!-- Add screenshot -->
+![ordering view modifiers backgrounds](/img/Screenshot 2020-05-06 at 23.35.37.png "ordering view modifiers backgrounds")
 
 The padding adds some space between the text and the edges of the view. The red background color is applied to the view that contains just the text and nothing more. The padding modifier results in a new view and the orange background is applied to it.
 
 \[^Quick tip]: you can use this approach to visually debug more complex previews (for example to check:  paddings, borders, positioning, etc).
+
+
 
 # Custom view modifiers
 
