@@ -258,8 +258,8 @@ For the most time you won't remember modifiers and their signature. That's why y
 
 In the next blog post I'll discuss about applying view modifiers on buttons and how can we start having a mini-ui-library suited for a SwiftUI project. Stay close!
 
-# Call-to-action
+# Let's stay in touch!
 
 If you enjoy what I write, please follow my activity wherever you prefer: [Dev.to](https://dev.to/calin_crist), [Medium](https://medium.com/@calin_crist) or on my very own gatsby powered blog [calincrist.com](https://www.calincrist.com).
 
-If you want to have a chat or simply see what I'm up to, follow me on [Twitter](https://twitter.com/calin_crist).
+Follow me on [Twitter](https://twitter.com/calin_crist) if you want to have a chat or simply see what I'm up to. I try to post something there every day.
