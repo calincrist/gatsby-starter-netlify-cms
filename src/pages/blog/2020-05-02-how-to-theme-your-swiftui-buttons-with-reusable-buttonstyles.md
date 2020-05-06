@@ -197,7 +197,7 @@ Now, writing `Text("Cool headline").purpleHeadline()` will make sense.
 
 Customizing your custom modifiers? Maybe with some values as parameters? I thought you wouldn't ask!
 
-<!-- Add image/meme. Smth. about more customization -->
+![Customizing your custom modifiers](/img/just-a-little-5a2f4c.jpg "Customizing your custom modifiers")
 
 Of course, our custom view modifiers can take parameters. What we have to do is to specify them in the `init` method.
 
