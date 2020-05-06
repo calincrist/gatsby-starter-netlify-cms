@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-title: How to theme your SwiftUI app with reusable view modifiers
+title: Beginners guide to view modifiers in SwiftUI
 date: 2020-05-02T07:34:53.476Z
 featured_image: /img/custom_view_modifiers.png
 description: >-
@@ -243,12 +243,12 @@ At the end of the day, the view modifier is just a `struct`, so we can make use 
 Usage: 
 
 ```swift
-Text(subtitleText)
+Text("Cool headline")
     .purpleHeadline()
     .bordered(borderWidth: 3, borderRadius: 5)
 ```
 
-<!-- Add screenshot -->
+![bordered view modifier](/img/Screenshot 2020-05-07 at 00.09.41.png "bordered view modifier")
 
 # Conclusion / Where to go from here?
 
