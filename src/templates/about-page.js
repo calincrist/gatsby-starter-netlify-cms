@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import { SocialIcon } from "react-social-icons";
 import profileImage from "../img/fotoram.io.png"
+import Sidebar from "../components/Sidebar";
 
 export const AboutPageTemplate = ({ title, content, contentComponent }) => {
   const PageContent = contentComponent || Content

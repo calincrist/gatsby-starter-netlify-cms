@@ -2,6 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from "gatsby"
 import SEO from "./SEO";
+import Sidebar from "./Sidebar";
 
 import Navbar from '../components/Navbar'
 import './all.sass'
@@ -59,8 +60,13 @@ const TemplateWrapper = ({ children }) => {
           
           <SEO title={data.site.siteMetadata.title} metaImage={imageObj} /> 
         </Helmet>
-        <Navbar />
-        <div>{children}</div>
+        {/* <Navbar /> */}
+        <div className="columns">
+          <div className="column is-2">
+            <Sidebar/>
+          </div>
+          {children}
+        </div>
       </div>
     )}
   />);

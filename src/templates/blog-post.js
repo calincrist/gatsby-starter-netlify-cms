@@ -7,6 +7,7 @@ import Image from 'gatsby-image'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import SEO from '../components/SEO';
+import Sidebar from "../components/Sidebar";
 import '../components/all.sass'
 
 export const BlogPostTemplate = ({
@@ -28,7 +29,7 @@ export const BlogPostTemplate = ({
       {helmet || ''}
       <div className="container content">
         <div className="columns">
-          <div className="column is-10 is-offset-1">
+          <div className="column is-8 is-offset-1">
             <h1 className="title is-size-2">
               {title}
             </h1>
