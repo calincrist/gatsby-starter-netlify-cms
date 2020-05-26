@@ -32,7 +32,7 @@ Creating a button in SwiftUI is pretty simple. It requires an action and the act
 Button(action: {
   //	action on tap - e.g. update a @State variable
 }) {
-	// content - e.g. Text or Image
+  // content - e.g. Text or Image
 }
 ```
 
@@ -43,11 +43,9 @@ Of course, to style this `Button` view you have to add view modifiers. You have 
 
 ```swift
 //	1.
-Button(action: {
-  //	...
-}) {
+Button(action: { }) {
   Text("Tap me!")
-  		.padding()
+  	  .padding()
       .font(.title)
       .background(Color.green)
       .foregroundColor(.white)
@@ -56,9 +54,7 @@ Button(action: {
 /*=======================================================================*/
 
 //	2.
-Button(action: {
-  //	...
-}) {
+Button(action: { }) {
   Text("Tap me!")
 }
 .padding()
@@ -69,7 +65,7 @@ Button(action: {
 
 Both will have the same result:
 
-![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \\\\\\\\\\"Tap me\\\\\\\\\\" caption")
+![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \\\\\\\\\\\"Tap me\\\\\\\\\\\" caption")
 
 **However**, the difference however can be seen whenever you have multiple views inside the content:
 
@@ -88,7 +84,7 @@ Button(action: { }) {
 
 //	2.
 Button(action: { }) {
-	Image(systemName: "square.and.arrow.down")
+  Image(systemName: "square.and.arrow.down")
   Text("Tap me!")
 }
 .padding()
@@ -132,9 +128,7 @@ By default, we have 3 pre-defined styles.
 
 ```swift
 /// The default button style.
-Button(action: {
-  //    ...
-}) {
+Button(action: { }) {
   Image(systemName: "square.and.arrow.down")
   Text("Tap me!")
 }
@@ -142,9 +136,7 @@ Button(action: {
 
 /// The style may apply a visual effect to indicate the pressed, focused,
 /// or enabled state of the button.
-Button(action: {
-  //    ...
-}) {
+Button(action: { }) {
   Image(systemName: "square.and.arrow.down")
   Text("Tap me!")
 }
@@ -152,9 +144,7 @@ Button(action: {
 
 
 /// A standard `Button` style that does not apply a border to its content.
-Button(action: {
-  //    ...
-}) {
+Button(action: { }) {
   Image(systemName: "square.and.arrow.down")
   Text("Tap me!")
 }
@@ -400,7 +390,7 @@ enum ButtonStyles {
     var secondaryColor: Color? {
         switch self {
         case .light:
-						return LightStyleConfig.secondaryColor
+		    return LightStyleConfig.secondaryColor
             
         case .primary:
             return PrimaryStyleConfig.secondaryColor
@@ -552,15 +542,15 @@ struct CustomButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         return configuration.label
             .padding()
-			      .font(font)
+			.font(font)
             .background(display.backgroundColor)			//	<---
             .foregroundColor(display.foregroundColor)	//	<---
             .cornerRadius(display.cornerRadius)				//	<---
             .opacity(configuration.isPressed ? 0.7 : 1)
-      			.shadow(color: display.backgroundColor!.opacity(0.2),
-                    radius: display.cornerRadius,
-                    x: 0,
-                    y: 5)
+            .shadow(color: display.backgroundColor!.opacity(0.2),
+                radius: display.cornerRadius,
+                x: 0,
+                y: 5)
     }
 }
 ```
@@ -599,19 +589,19 @@ Let's fix it! We can add the border by adding a `RoundedRectangle` as an overlay
 func makeBody(configuration: Self.Configuration) -> some View {
         return configuration.label
             .padding()
-					  .font(font)
+            .font(font)
             .background(display.backgroundColor)			
             .foregroundColor(display.foregroundColor)	
             .cornerRadius(display.cornerRadius)				
             .opacity(configuration.isPressed ? 0.7 : 1)
-      			.shadow(color: display.backgroundColor!.opacity(0.2),
-                    radius: display.cornerRadius,
-                    x: 0,
-                    y: 5)
-  					.overlay(
-                RoundedRectangle(cornerRadius: display.cornerRadius)	//	<---
-                    .stroke(display.borderColor, lineWidth: 1)
-        )
+            .shadow(color: display.backgroundColor!.opacity(0.2),
+                radius: display.cornerRadius,
+                x: 0,
+                y: 5)
+            .overlay(
+              RoundedRectangle(cornerRadius: display.cornerRadius)	//	<---
+              .stroke(display.borderColor, lineWidth: 1)
+            )
 }
 ```
 
@@ -663,10 +653,10 @@ struct CustomButtonStyle: ButtonStyle {
                     radius: display.cornerRadius,
                     x: 0,
                     y: 5)
-				    .overlay(
-                RoundedRectangle(cornerRadius: display.cornerRadius)
-                    .stroke(display.borderColor, lineWidth: 1)
-        )
+            .overlay(
+              RoundedRectangle(cornerRadius: display.cornerRadius)
+              .stroke(display.borderColor, lineWidth: 1)
+            )
   }
 }
 ```
@@ -690,7 +680,7 @@ struct CustomButtonStyle: ButtonStyle {
          size: Size = .default,
          isFullWidth: Bool = false) {
 	
-    		self.isFullWidth = isFullWidth	//	<---
+        self.isFullWidth = isFullWidth	//	<---
         // ...
   }
 }
@@ -784,12 +774,12 @@ func makeBody(configuration: Self.Configuration) -> some View {
             .overlay(
                 RoundedRectangle(cornerRadius:display.cornerRadius)
                     .stroke(display.borderColor, lineWidth: 1)
-        		)
+            )
             .scaleEffect(configuration.isPressed ? 0.8 : 1)
-						.animation(
-      				  Animation.spring(response: 0.8, 
-              				           dampingFraction: 0.1, 
-                      				   blendDuration: 10)
+            .animation(
+              Animation.spring(response: 0.8, 
+                               dampingFraction: 0.1, 
+                               blendDuration: 10)
             )
     }
 ```
