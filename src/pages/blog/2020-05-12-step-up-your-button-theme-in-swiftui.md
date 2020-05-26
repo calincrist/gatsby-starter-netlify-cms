@@ -69,7 +69,7 @@ Button(action: {
 
 Both will have the same result:
 
-![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \\\\\"Tap me\\\\\" caption")
+![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \\\\\\"Tap me\\\\\\" caption")
 
 **However**, the difference however can be seen whenever you have multiple views inside the content:
 
@@ -575,19 +575,13 @@ Let's see it in action:
 
 ![default primary style](/img/Screenshot 2020-05-19 at 21.56.08.png "default primary style")
 
-
-
 * `CustomButtonStyle(.rounded(type: .success))`
 
 ![rounded success button style](/img/Screenshot 2020-05-19 at 21.55.40.png "rounded success button style")
 
-
-
 * `CustomButtonStyle(.transparent(type: .success)`
 
 ![transparent success button style](/img/Screenshot 2020-05-19 at 21.57.16.png "transparent success button style")
-
-
 
 * `CustomButtonStyle(.outline(type: .success))`
 
