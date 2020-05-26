@@ -69,7 +69,7 @@ Button(action: {
 
 Both will have the same result:
 
-![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \\\"Tap me\\\" caption")
+![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \\\\\"Tap me\\\\\" caption")
 
 **However**, the difference however can be seen whenever you have multiple views inside the content:
 
@@ -109,6 +109,8 @@ Something to keep in mind:
 ![comparison between buttons with different styles](/img/Screenshot 2020-05-16 at 17.31.07.png "comparison between buttons with different styles")
 
 * the modifiers regarding fonts and colors are applied here to the `Image` view because it's using the SF Symbol icon (the Apple's equivalent of FontAwesome)
+
+<br>
 
 # 3. ButtonStyle modifier
 
@@ -159,11 +161,13 @@ Button(action: {
 .buttonStyle(BorderlessButtonStyle())
 ```
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/Screenshot 2020-05-16 at 18.03.37.png" alt="Screenshot 2020-05-16 at 18.03.37" style="zoom:50%;" />
+![3 buttons with 3 pre-defined styles](/img/Screenshot 2020-05-16 at 18.03.37.png "3 buttons with 3 pre-defined styles")
 
 But what if we would want to customise further our buttons? Like change the opacity when the button is pressed?
 
 That's where the `ButtonStyle` protocol comes in.
+
+<br>
 
 # 4. Build your own ButtonStyle modifier
 
@@ -202,7 +206,9 @@ Button(action: { }) {
 
 And the result:
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/custombuttonstyle.gif" alt="custombuttonstyle" style="zoom:50%;" />
+![button with custom style and animation](/img/custombuttonstyle.gif "button with custom style and animation")
+
+<br>
 
 # 5. React Native UI libraries
 
@@ -216,7 +222,9 @@ What I used back then was [Callstack's React Native Paper (material design)](htt
 
 Import, use and still customise was mind blowing to me. I started to understand the power and noise around React Native.
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/tenor.gif" alt="tenor" style="zoom:50%;" />
+![mind blown gif](/img/tenor.gif "mind blown gif")
+
+<br>
 
 ## NativeBase as an example
 
@@ -232,7 +240,9 @@ Fast-forward to today, I'm happy that I rediscovered my love to develop beautifu
 
 Let's see how can we develop a themed UI library for our buttons similar to the ones from NativeBase.
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/Screenshot 2020-05-26 at 15.16.31.png" alt="Screenshot 2020-05-26 at 15.16.31" style="zoom:50%;" />
+![nativebase buttons](/img/Screenshot 2020-05-26 at 15.16.31.png "nativebase buttons")
+
+<br>
 
 # 6. Create a UI library
 
@@ -248,6 +258,8 @@ Below I summarise how are the buttons described based on the NativeBase examples
   * full width
 * States: enabled(by default), disabled
 * Sizes: small, default, large (font sizes)
+
+<br>
 
 What I wanted to achieve is to be as close as possible as declaring:
 
@@ -280,6 +292,8 @@ Now, looking at these requirements and the native base examples, we can see ther
 * border color - for outlined buttons 
 * border radius - for both default and rounded buttons
 * border width
+
+### <br>
 
 ### Button style configuration
 
@@ -423,6 +437,8 @@ enum ButtonStyles {
 }
 ```
 
+### <br>
+
 ### Display styles
 
 Now let's use an enum to describe the display styles: default, transparent, outline and rounded and to specify the button style configurations by implementing the `ButtonStyleConfig` protocol.
@@ -487,6 +503,8 @@ enum DisplayStyle: ButtonStyleConfig {
 }
 ```
 
+<br>
+
 Is there something we missed? Oh, yes, the size of the button, that is in fact the font size. So we can create a simple enum:
 
 ```swift
@@ -506,9 +524,13 @@ enum Size {
 }
 ```
 
+<br>
+
 With all these components, we can start creating our custom button styles.
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/giphy.gif" alt="giphy" style="zoom:50%;" />
+![](/img/giphy.gif)
+
+<br>
 
 # 7. Theme the buttons
 
@@ -545,25 +567,35 @@ struct CustomButtonStyle: ButtonStyle {
 
 As a subtle touch, I added a shadow component to give the buttons a little depth.
 
+<br>
+
 Let's see it in action:
 
 * this is how it looks by default: `.buttonStyle(CustomButtonStyle())`
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/Screenshot 2020-05-19 at 21.56.08.png" alt="Screenshot 2020-05-19 at 21.56.08" style="zoom:50%;" />
+![default primary style](/img/Screenshot 2020-05-19 at 21.56.08.png "default primary style")
+
+
 
 * `CustomButtonStyle(.rounded(type: .success))`
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/Screenshot 2020-05-19 at 21.55.40.png" alt="Screenshot 2020-05-19 at 21.55.40" style="zoom:50%;" />
+![rounded success button style](/img/Screenshot 2020-05-19 at 21.55.40.png "rounded success button style")
+
+
 
 * `CustomButtonStyle(.transparent(type: .success)`
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/Screenshot 2020-05-19 at 21.57.16.png" alt="Screenshot 2020-05-19 at 21.57.16" style="zoom:50%;" />
+![transparent success button style](/img/Screenshot 2020-05-19 at 21.57.16.png "transparent success button style")
+
+
 
 * `CustomButtonStyle(.outline(type: .success))`
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/Screenshot 2020-05-19 at 21.57.16.png" alt="Screenshot 2020-05-19 at 21.57.16" style="zoom:50%;" />
+![failed outlined success button style](/img/Screenshot 2020-05-19 at 21.57.16.png "failed outlined success button style")
 
 **Wait, what? Shouldn't it be outlined? But where's the border? Let's fix it!**
+
+### <br>
 
 ### Borders
 
@@ -591,13 +623,17 @@ func makeBody(configuration: Self.Configuration) -> some View {
 
 The outlined style it's fixed!
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/Screenshot 2020-05-19 at 22.02.56.png" alt="Screenshot 2020-05-19 at 22.02.56" style="zoom:50%;" />
+![fixed outlined success button style](/img/Screenshot 2020-05-19 at 22.02.56.png "fixed outlined success button style")
+
+<br>
 
 ### What we achieved until now
 
 Let's see what we can do until now:
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/buttons_without_animations.gif" alt="buttons_without_animations" style="zoom:50%;" />
+![buttons with basic animations](/img/buttons_without_animations.gif "buttons with basic animations")
+
+<br>
 
 ### Full width
 
@@ -643,7 +679,9 @@ struct CustomButtonStyle: ButtonStyle {
 
 And the result is this:
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/Screenshot 2020-05-20 at 11.16.44.png" alt="Screenshot 2020-05-20 at 11.16.44" style="zoom:50%;" />
+![full width buttons](/img/Screenshot 2020-05-20 at 11.16.44.png "full width buttons")
+
+<br>
 
 Now, this is not something I always want. I would like to specify that through a boolean, something like: `CustomButtonStyle(.default(type: .dark), isFullWidth: true)` .
 
@@ -674,6 +712,8 @@ struct FullWidthModifier: ViewModifier {
     }
 }
 ```
+
+<br>
 
 Unfortunately at this moment, there isn't a method to conditionally apply a modifier. But we can create it!
 
@@ -724,7 +764,9 @@ Button(action: {}) {
 .buttonStyle(CustomButtonStyle(.default(type: .dark), isFullWidth: true))
 ```
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/Screenshot 2020-05-20 at 11.39.31.png" alt="Screenshot 2020-05-20 at 11.39.31" style="zoom:50%;" />
+![default and block dark buttons](/img/Screenshot 2020-05-20 at 11.39.31.png "default and block dark buttons")
+
+<br>
 
 ### Crazy animations
 
@@ -760,20 +802,26 @@ func makeBody(configuration: Self.Configuration) -> some View {
 
 **Voilà!**
 
-<img src="/Users/calinciubotariu/Documents/Projects/gatsby-starter-netlify-cms/static/img/buttons_with_animations.gif" alt="buttons_with_animations" style="zoom:50%;" />
+![buttons with animations](/img/buttons_with_animations.gif "buttons with animations")
 
 Do we really need that in a real-life scenario? Most probably not but we need to animate our lives sometimes :)
 
-# 6. Conclusion / Where to go from here?
+<br>
+
+# Conclusion
 
 Congratulations! You made it this far and the reward is your own button component library that's easy to extend and customise.
 
-# 7. Useful links
+<br>
 
-* https://swiftui-lab.com/view-extensions-for-better-code-readability/
-* https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/ <!-- change this on medium -->
+# Useful links
 
-# 8. Call-to-action
+* [https://swiftui-lab.com/view-extensions-for-better-code-readability/](<* https://swiftui-lab.com/view-extensions-for-better-code-readability/>)
+* [The begginer's guide to view modifiers](<* https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/>) <!-- change this on medium or dev.to -->
+
+<br>
+
+# Follow me
 
 If you enjoy what I write, please follow my activity wherever you prefer: [Dev.to](https://dev.to/calin_crist), [Medium](https://medium.com/@calin_crist) or on my very own gatsby powered blog [calincrist.com](https://www.calincrist.com/).
 
