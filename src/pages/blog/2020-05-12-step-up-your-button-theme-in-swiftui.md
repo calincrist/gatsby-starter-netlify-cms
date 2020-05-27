@@ -64,7 +64,7 @@ Button(action: { }) {
 
 Both will have the same result:
 
-!\[button with "Tap me" caption\](/img/Screenshot 2020-05-16%20%at%20%17.15.56.png "button with "Tap me" caption")
+![button with "Tap me" caption](/static/img/Screenshot 2020-05-16 at 17.15.56.png 'button with "Tap me" caption')
 
 **However**, the difference however can be seen whenever you have multiple views inside the content:
 
@@ -111,15 +111,11 @@ Something to keep in mind:
 
 There are 2 types of view modifiers:
 
-1. 
-
-   ##### Modifiers bundled with the View protocol, available to any view:
+1. **Modifiers bundled with the View protocol, available to any view:**
 
 E.g. `padding` or `background` , that you can be apply to any View.
 
-1. 
-
-   ##### Modifiers specific to a type, available only to instances of that type:
+1. **Modifiers specific to a type, available only to instances of that type:**
 
 These are used to take advantage of specific traits of that View. And buttons are a perfect example for this. For example we want to change the look&feel whenever the user taps on the button.
 
