@@ -92,7 +92,7 @@ module.exports = {
           resolve: `gatsby-remark-vscode`,
           // All options are optional. Defaults shown here.
           options: {
-            colorTheme: 'Light+ (default light)', // Read on for list of included themes. Also accepts object and function forms.
+            colorTheme: 'Monokai', // Read on for list of included themes. Also accepts object and function forms.
             wrapperClassName: '',   // Additional class put on 'pre' tag. Also accepts function to set the class dynamically.
             injectStyles: true,     // Injects (minimal) additional CSS for layout and scrolling
             extensions: [],         // Extensions to download from the marketplace to provide more languages and themes
