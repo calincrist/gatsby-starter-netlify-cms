@@ -1,15 +1,14 @@
 ---
 templateKey: blog-post
 title: Build your own button component library in SwiftUI from scratch
-date: 2020-05-12T17:31:18.901+00:00
-featured_image: "/img/diomari-madulara-FFZjSpUwc_I-unsplash.jpg"
+date: 2020-05-12T17:31:18.901Z
+featured_image: /img/diomari-madulara-FFZjSpUwc_I-unsplash.jpg
 description: Create a UI library for you buttons. Your app needs it!
 tags:
-- ios
-- swiftui
-- swift
-- button
-
+  - ios
+  - swiftui
+  - swift
+  - button
 ---
 # Introduction
 
@@ -64,7 +63,7 @@ Button(action: { }) {
 
 Both will have the same result:
 
-![button with "Tap me" caption](/static/img/Screenshot 2020-05-16 at 17.15.56.png 'button with "Tap me" caption')
+![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \"Tap me\" caption")
 
 **However**, the difference however can be seen whenever you have multiple views inside the content:
 
@@ -217,9 +216,9 @@ Import, use and still customise was mind blowing to me. I started to understand 
 
 ## NativeBase as an example
 
-NativeBase library is made from pre-build components that help every developer to build stuff faster and _consistent_ across all the screens. And buttons are not an exception to this.
+NativeBase library is made from pre-build components that help every developer to build stuff faster and *consistent* across all the screens. And buttons are not an exception to this.
 
-They offer a long list of [_props_](https://docs.nativebase.io/Components.html#button-def-headref) — inputs for the Button component that tell it how to look or to behave - like outlined, transparent, bordered, rounded, large or small.
+They offer a long list of *[props](https://docs.nativebase.io/Components.html#button-def-headref)* — inputs for the Button component that tell it how to look or to behave - like outlined, transparent, bordered, rounded, large or small.
 
 No more @IBOutlets, no more subclassing, no more "CustomButton" that ate another UIButton :)
 
@@ -239,6 +238,7 @@ Below I summarise how are the buttons described based on the NativeBase examples
 
 * Types: light, primary, success, info, warning, danger, dark
 * Styles:
+
   * default (color fill),
   * transparent,
   * outline
@@ -798,8 +798,8 @@ Congratulations! You made it this far and the reward is your own button componen
 
 # Useful links
 
-* \[https://swiftui-lab.com/view-extensions-for-better-code-readability/\](<* https://swiftui-lab.com/view-extensions-for-better-code-readability/>)
-* \[The begginer's guide to view modifiers\](<* https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/>) <!-- change this on medium or dev.to -->
+* \[https://swiftui-lab.com/view-extensions-for-better-code-readability/](<* https://swiftui-lab.com/view-extensions-for-better-code-readability/>)
+* \[The begginer's guide to view modifiers](<* https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/>) <!-- change this on medium or dev.to -->
 
 <br>
 
