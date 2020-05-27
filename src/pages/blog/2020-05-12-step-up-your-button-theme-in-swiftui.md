@@ -1,18 +1,19 @@
 ---
 templateKey: blog-post
 title: How to create your own button component library in SwiftUI from scratch
-date: 2020-05-12T17:31:18.901Z
-featured_image: /img/diomari-madulara-FFZjSpUwc_I-unsplash.jpg
+date: 2020-05-12T17:31:18.901+00:00
+featured_image: "/img/diomari-madulara-FFZjSpUwc_I-unsplash.jpg"
 description: Create a UI library for you buttons. Your app needs it!
 tags:
-  - ios
-  - swiftui
-  - swift
-  - button
+- ios
+- swiftui
+- swift
+- button
+
 ---
 # Introduction
 
-Buttons are the UI components that people use to interact with your app. It's important to make them look appropriate to the action they trigger, to be consistent and accessible across the app and to give visual feedback to users. 
+Buttons are the UI components that people use to interact with your app. It's important to make them look appropriate to the action they trigger, to be consistent and accessible across the app and to give visual feedback to users.
 
 In the [previous blog post](https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/) I talked about what are view modifiers and how can we use them to create stylish UI in our SwiftUI apps.
 
@@ -36,7 +37,7 @@ Button(action: {
 
 Of course, to style this `Button` view you have to add view modifiers. You have 2 options:
 
-1. apply the modifiers to (each of) the views inside the content 
+1. apply the modifiers to (each of) the views inside the content
 2. apply the modifiers to the button view - that will apply the modifiers to all the views inside the content
 
 ```swift
@@ -63,7 +64,7 @@ Button(action: { }) {
 
 Both will have the same result:
 
-![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \\\\\\\\\\\\\\\\"Tap me\\\\\\\\\\\\\\\\" caption")
+!\[button with "Tap me" caption\](/img/Screenshot 2020-05-16%20%at%20%17.15.56.png "button with "Tap me" caption")
 
 **However**, the difference however can be seen whenever you have multiple views inside the content:
 
@@ -97,7 +98,7 @@ As you can see, in the first button the `Image` view is left out — but it's st
 
 Something to keep in mind:
 
-* like I noted in my [previous blog post](https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/) about view modifiers, usually the order matters 
+* like I noted in my [previous blog post](https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/) about view modifiers, usually the order matters
 * `padding` should be (again, usually) put before anything regarding the background or border of the button. Let the button breathe, give it some space. We wouldn't want something like:
 
 ![comparison between buttons with different styles](/img/Screenshot 2020-05-16 at 17.31.07.png "comparison between buttons with different styles")
@@ -110,17 +111,21 @@ Something to keep in mind:
 
 There are 2 types of view modifiers:
 
-1. ##### Modifiers bundled with the View protocol, available to any view:
+1. 
+
+   ##### Modifiers bundled with the View protocol, available to any view:
 
 E.g. `padding` or `background` , that you can be apply to any View.
 
-2. ##### Modifiers specific to a type, available only to instances of that type:
+1. 
 
-These are used to take advantage of specific traits of that View. And buttons are a perfect example for this. For example we want to change the look&feel whenever the user taps on the button. 
+   ##### Modifiers specific to a type, available only to instances of that type:
+
+These are used to take advantage of specific traits of that View. And buttons are a perfect example for this. For example we want to change the look&feel whenever the user taps on the button.
 
 We have `buttonStyle` view modifier that accepts a  `struct` that implements the `ButtonStyle` protocol.
 
-By default, we have 3 pre-defined styles. 
+By default, we have 3 pre-defined styles.
 
 <!-- Talk about these pre-defined styles -->
 
@@ -202,11 +207,11 @@ And the result:
 
 ### Short backstory
 
-In 2019 I started a "sabbatical" year and a half from native iOS development. I started to develop mobile apps using React Native as my main job. 
+In 2019 I started a "sabbatical" year and a half from native iOS development. I started to develop mobile apps using React Native as my main job.
 
 I learned a lot, but what amazed me was the power to quickly prototype apps with existing UI libraries. Where I came from (the native development world) that wasn't even a thought.
 
-What I used back then was [Callstack's React Native Paper (material design)](https://callstack.github.io/react-native-paper/) and then [NativeBase](https://nativebase.io). 
+What I used back then was [Callstack's React Native Paper (material design)](https://callstack.github.io/react-native-paper/) and then [NativeBase](https://nativebase.io).
 
 Import, use and still customise was mind blowing to me. I started to understand the power and noise around React Native.
 
@@ -216,9 +221,9 @@ Import, use and still customise was mind blowing to me. I started to understand 
 
 ## NativeBase as an example
 
-NativeBase library is made from pre-build components that help every developer to build stuff faster and *consistent* across all the screens. And buttons are not an exception to this.
+NativeBase library is made from pre-build components that help every developer to build stuff faster and _consistent_ across all the screens. And buttons are not an exception to this.
 
-They offer a long list of *[props](https://docs.nativebase.io/Components.html#button-def-headref)* — inputs for the Button component that tell it how to look or to behave - like outlined, transparent, bordered, rounded, large or small.
+They offer a long list of [_props_](https://docs.nativebase.io/Components.html#button-def-headref) — inputs for the Button component that tell it how to look or to behave - like outlined, transparent, bordered, rounded, large or small.
 
 No more @IBOutlets, no more subclassing, no more "CustomButton" that ate another UIButton :)
 
@@ -238,7 +243,6 @@ Below I summarise how are the buttons described based on the NativeBase examples
 
 * Types: light, primary, success, info, warning, danger, dark
 * Styles:
-
   * default (color fill),
   * transparent,
   * outline
@@ -277,7 +281,7 @@ Now, looking at these requirements and the native base examples, we can see ther
 
 * foreground color - the text color
 * background color
-* border color - for outlined buttons 
+* border color - for outlined buttons
 * border radius - for both default and rounded buttons
 * border width
 
@@ -522,7 +526,7 @@ With all these components, we can start creating our custom button styles.
 
 # Theme the buttons
 
-Let's use the CustomButtonStyle we created earlier and add a custom init. Like I described in the [previous blog post](https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/) we can pass parameters to our custom view modifier. 
+Let's use the CustomButtonStyle we created earlier and add a custom init. Like I described in the [previous blog post](https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/) we can pass parameters to our custom view modifier.
 
 ```swift
 struct CustomButtonStyle: ButtonStyle {
@@ -627,11 +631,11 @@ To make a view take the full width available, we can use the `.frame` view modif
 
 `.frame(maxWidth: .infinity)`.
 
-**Where**: 
+**Where**:
 
-In the previous blog post I emphasised that the order of modifiers matters. 
+In the previous blog post I emphasised that the order of modifiers matters.
 
-What we want to achieve is not only a full width. We want make the corners, backgrounds, shadows and overlays impact the entire view and keep the proportions. 
+What we want to achieve is not only a full width. We want make the corners, backgrounds, shadows and overlays impact the entire view and keep the proportions.
 
 To do that we need to specify the `frame` before the `background` modifier.
 
@@ -798,8 +802,8 @@ Congratulations! You made it this far and the reward is your own button componen
 
 # Useful links
 
-* [https://swiftui-lab.com/view-extensions-for-better-code-readability/](<* https://swiftui-lab.com/view-extensions-for-better-code-readability/>)
-* [The begginer's guide to view modifiers](<* https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/>) <!-- change this on medium or dev.to -->
+* \[https://swiftui-lab.com/view-extensions-for-better-code-readability/\](<* https://swiftui-lab.com/view-extensions-for-better-code-readability/>)
+* \[The begginer's guide to view modifiers\](<* https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/>) <!-- change this on medium or dev.to -->
 
 <br>
 
