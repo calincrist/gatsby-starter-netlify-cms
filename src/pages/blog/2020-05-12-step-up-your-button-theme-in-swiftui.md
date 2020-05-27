@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-title: How to create your own button component library in SwiftUI from scratch
+title: Build your own button component library in SwiftUI from scratch
 date: 2020-05-12T17:31:18.901+00:00
 featured_image: "/img/diomari-madulara-FFZjSpUwc_I-unsplash.jpg"
 description: Create a UI library for you buttons. Your app needs it!
