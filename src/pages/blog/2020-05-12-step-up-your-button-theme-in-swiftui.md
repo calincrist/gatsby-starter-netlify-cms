@@ -63,7 +63,7 @@ Button(action: { }) {
 
 Both will have the same result:
 
-![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \\\\\\\\\\\\\\\"Tap me\\\\\\\\\\\\\\\" caption")
+![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \\\\\\\\\\\\\\\\"Tap me\\\\\\\\\\\\\\\\" caption")
 
 **However**, the difference however can be seen whenever you have multiple views inside the content:
 
