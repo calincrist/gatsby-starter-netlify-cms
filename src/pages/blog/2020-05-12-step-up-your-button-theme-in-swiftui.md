@@ -96,7 +96,7 @@ As you can see, in the first button the `Image` view is left out — but it's st
 
 ![comparison between buttons with different styles](/img/Screenshot 2020-05-16 at 17.20.45.png "comparison between buttons with different styles")
 
-Something to keep in mind:
+**Something to keep in mind:**
 
 * like I noted in my [previous blog post](https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/) about view modifiers, usually the order matters
 * `padding` should be (again, usually) put before anything regarding the background or border of the button. Let the button breathe, give it some space. We wouldn't want something like:
@@ -115,7 +115,7 @@ There are 2 types of view modifiers:
 
 E.g. `padding` or `background` , that you can be apply to any View.
 
-1. **Modifiers specific to a type, available only to instances of that type:**
+2. **Modifiers specific to a type, available only to instances of that type:**
 
 These are used to take advantage of specific traits of that View. And buttons are a perfect example for this. For example we want to change the look&feel whenever the user taps on the button.
 
