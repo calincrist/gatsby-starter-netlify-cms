@@ -10,11 +10,7 @@ tags:
   - swift
   - button
 ---
-<!-- How to theme your SwiftUI buttons with reusable ButtonStyle modifiers -->
-
-<!-- How to create your own button component library in SwiftUI from scratch -->
-
-# 1. Introduction
+# Introduction
 
 Buttons are the UI components that people use to interact with your app. It's important to make them look appropriate to the action they trigger, to be consistent and accessible across the app and to give visual feedback to users. 
 
@@ -24,7 +20,9 @@ Here I will present how to apply them to create reusable styles for buttons. It'
 
 ![buckle up image](/img/buckleup-630x315.jpg "buckle up")
 
-# 2. SwiftUI buttons
+# <br>
+
+# SwiftUI buttons
 
 Creating a button in SwiftUI is pretty simple. It requires an action and the actual content displayed and tappable.
 
@@ -65,7 +63,7 @@ Button(action: { }) {
 
 Both will have the same result:
 
-![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \\\\\\\\\\\"Tap me\\\\\\\\\\\" caption")
+![button with "Tap me" caption](/img/Screenshot 2020-05-16 at 17.15.56.png "button with \\\\\\\\\\\\"Tap me\\\\\\\\\\\\" caption")
 
 **However**, the difference however can be seen whenever you have multiple views inside the content:
 
@@ -108,7 +106,7 @@ Something to keep in mind:
 
 <br>
 
-# 3. ButtonStyle modifier
+# ButtonStyle modifier
 
 There are 2 types of view modifiers:
 
@@ -159,7 +157,7 @@ That's where the `ButtonStyle` protocol comes in.
 
 <br>
 
-# 4. Build your own ButtonStyle modifier
+# Build your own ButtonStyle modifier
 
 As I was stating before, the view modifier specific to buttons gives us access to specific traits. This is done through the `Configuration`(which is in fact a `typealias Configuration = ButtonStyleConfiguration`).
 
@@ -200,7 +198,7 @@ And the result:
 
 <br>
 
-# 5. React Native UI libraries
+# React Native UI libraries
 
 ### Short backstory
 
@@ -234,7 +232,7 @@ Let's see how can we develop a themed UI library for our buttons similar to the 
 
 <br>
 
-# 6. Create a UI library
+# Create a UI library
 
 Below I summarise how are the buttons described based on the NativeBase examples.
 
@@ -522,7 +520,7 @@ With all these components, we can start creating our custom button styles.
 
 <br>
 
-# 7. Theme the buttons
+# Theme the buttons
 
 Let's use the CustomButtonStyle we created earlier and add a custom init. Like I described in the [previous blog post](https://www.calincrist.com/blog/2020-05-02-beginners-guide-to-view-modifiers-swiftui/) we can pass parameters to our custom view modifier. 
 
